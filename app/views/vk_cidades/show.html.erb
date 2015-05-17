@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome cidade:</strong>
+  <%= @vk_cidade.nome_cidade %>
+</p>
+
+<p>
+  <strong>Vk estado:</strong>
+  <%= @vk_cidade.vk_estado %>
+</p>
+
+<%= link_to 'Edit', edit_vk_cidade_path(@vk_cidade) %> |
+<%= link_to 'Back', vk_cidades_path %>

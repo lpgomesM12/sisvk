@@ -1,0 +1,2 @@
+module VkEstadosHelper
+end

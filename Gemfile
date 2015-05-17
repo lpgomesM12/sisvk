@@ -5,6 +5,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'validates_cpf_cnpj'
 gem 'execjs'
 
+gem 'devise'
 
 #gem 'pg'  
 gem 'pg', '~> 0.17.1'

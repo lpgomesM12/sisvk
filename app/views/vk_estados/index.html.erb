@@ -1,0 +1,29 @@
+<h1>Listing vk_estados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome estado</th>
+      <th>Sigl estado</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vk_estados.each do |vk_estado| %>
+      <tr>
+        <td><%= vk_estado.nome_estado %></td>
+        <td><%= vk_estado.sigl_estado %></td>
+        <td><%= link_to 'Show', vk_estado %></td>
+        <td><%= link_to 'Edit', edit_vk_estado_path(vk_estado) %></td>
+        <td><%= link_to 'Destroy', vk_estado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vk estado', new_vk_estado_path %>

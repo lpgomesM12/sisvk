@@ -1,0 +1,29 @@
+<h1>Listing vk_cidades</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome cidade</th>
+      <th>Vk estado</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vk_cidades.each do |vk_cidade| %>
+      <tr>
+        <td><%= vk_cidade.nome_cidade %></td>
+        <td><%= vk_cidade.vk_estado %></td>
+        <td><%= link_to 'Show', vk_cidade %></td>
+        <td><%= link_to 'Edit', edit_vk_cidade_path(vk_cidade) %></td>
+        <td><%= link_to 'Destroy', vk_cidade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vk cidade', new_vk_cidade_path %>
