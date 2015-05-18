@@ -1,0 +1,39 @@
+<h1>Listing vk_enderecos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome bairro</th>
+      <th>Nome rua</th>
+      <th>Desc quadra</th>
+      <th>Desc lote</th>
+      <th>Desc complemento</th>
+      <th>Desc cep</th>
+      <th>Vk cidade</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vk_enderecos.each do |vk_endereco| %>
+      <tr>
+        <td><%= vk_endereco.nome_bairro %></td>
+        <td><%= vk_endereco.nome_rua %></td>
+        <td><%= vk_endereco.desc_quadra %></td>
+        <td><%= vk_endereco.desc_lote %></td>
+        <td><%= vk_endereco.desc_complemento %></td>
+        <td><%= vk_endereco.desc_cep %></td>
+        <td><%= vk_endereco.vk_cidade %></td>
+        <td><%= link_to 'Show', vk_endereco %></td>
+        <td><%= link_to 'Edit', edit_vk_endereco_path(vk_endereco) %></td>
+        <td><%= link_to 'Destroy', vk_endereco, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vk endereco', new_vk_endereco_path %>

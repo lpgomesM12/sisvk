@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516211035) do
+ActiveRecord::Schema.define(version: 20150518165204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20150516211035) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "vk_categoriaprodutos", force: true do |t|
+    t.string   "nome_categoria"
+    t.string   "desc_categoria"
+    t.integer  "father_id"
+    t.integer  "integer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "vk_cidades", force: true do |t|
     t.string   "nome_cidade"
     t.integer  "vk_estado_id"
@@ -42,6 +51,33 @@ ActiveRecord::Schema.define(version: 20150516211035) do
   end
 
   add_index "vk_cidades", ["vk_estado_id"], name: "index_vk_cidades_on_vk_estado_id", using: :btree
+
+  create_table "vk_empresas", force: true do |t|
+    t.string   "nome_empresa"
+    t.string   "cnpj_empresa"
+    t.string   "nome_responsavel"
+    t.string   "desc_telefone"
+    t.string   "resu_atividade"
+    t.integer  "vk_endereco_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vk_empresas", ["vk_endereco_id"], name: "index_vk_empresas_on_vk_endereco_id", using: :btree
+
+  create_table "vk_enderecos", force: true do |t|
+    t.string   "nome_bairro"
+    t.string   "nome_rua"
+    t.string   "desc_quadra"
+    t.string   "desc_lote"
+    t.string   "desc_complemento"
+    t.string   "desc_cep"
+    t.integer  "vk_cidade_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vk_enderecos", ["vk_cidade_id"], name: "index_vk_enderecos_on_vk_cidade_id", using: :btree
 
   create_table "vk_estados", force: true do |t|
     t.string   "nome_estado"

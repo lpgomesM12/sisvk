@@ -1,0 +1,45 @@
+<%= form_for(@vk_endereco) do |f| %>
+  <% if @vk_endereco.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vk_endereco.errors.count, "error") %> prohibited this vk_endereco from being saved:</h2>
+
+      <ul>
+      <% @vk_endereco.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome_bairro %><br>
+    <%= f.text_field :nome_bairro %>
+  </div>
+  <div class="field">
+    <%= f.label :nome_rua %><br>
+    <%= f.text_field :nome_rua %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_quadra %><br>
+    <%= f.text_field :desc_quadra %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_lote %><br>
+    <%= f.text_field :desc_lote %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_complemento %><br>
+    <%= f.text_field :desc_complemento %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_cep %><br>
+    <%= f.text_field :desc_cep %>
+  </div>
+  <div class="field">
+    <%= f.label :vk_cidade_id %><br>
+    <%= f.text_field :vk_cidade_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

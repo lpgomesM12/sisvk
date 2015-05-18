@@ -1,0 +1,37 @@
+<h1>Listing vk_empresas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome empresa</th>
+      <th>Cnpj empresa</th>
+      <th>Nome responsavel</th>
+      <th>Desc telefone</th>
+      <th>Resu atividade</th>
+      <th>Vk endereco</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vk_empresas.each do |vk_empresa| %>
+      <tr>
+        <td><%= vk_empresa.nome_empresa %></td>
+        <td><%= vk_empresa.cnpj_empresa %></td>
+        <td><%= vk_empresa.nome_responsavel %></td>
+        <td><%= vk_empresa.desc_telefone %></td>
+        <td><%= vk_empresa.resu_atividade %></td>
+        <td><%= vk_empresa.vk_endereco %></td>
+        <td><%= link_to 'Show', vk_empresa %></td>
+        <td><%= link_to 'Edit', edit_vk_empresa_path(vk_empresa) %></td>
+        <td><%= link_to 'Destroy', vk_empresa, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vk empresa', new_vk_empresa_path %>

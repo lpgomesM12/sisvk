@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Categoria pai:</strong>
+  <%= @vk_categoriaproduto.father.nome_categoria %>
+</p>
+
+
+<p>
+  <strong>Nome categoria:</strong>
+  <%= @vk_categoriaproduto.nome_categoria %>
+</p>
+
+<p>
+  <strong>Desc categoria:</strong>
+  <%= @vk_categoriaproduto.desc_categoria %>
+</p>
+
+<%= link_to 'Edit', edit_vk_categoriaproduto_path(@vk_categoriaproduto) %> |
+<%= link_to 'Back', vk_categoriaprodutos_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@vk_categoriaproduto) do |f| %>
+  <% if @vk_categoriaproduto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vk_categoriaproduto.errors.count, "error") %> prohibited this vk_categoriaproduto from being saved:</h2>
+
+      <ul>
+      <% @vk_categoriaproduto.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome_categoria %><br>
+    <%= f.text_field :nome_categoria %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_categoria %><br>
+    <%= f.text_field :desc_categoria %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

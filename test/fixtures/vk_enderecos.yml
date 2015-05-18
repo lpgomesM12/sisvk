@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_bairro: MyString
+  nome_rua: MyString
+  desc_quadra: MyString
+  desc_lote: MyString
+  desc_complemento: MyString
+  desc_cep: MyString
+  vk_cidade_id: 
+
+two:
+  nome_bairro: MyString
+  nome_rua: MyString
+  desc_quadra: MyString
+  desc_lote: MyString
+  desc_complemento: MyString
+  desc_cep: MyString
+  vk_cidade_id: 

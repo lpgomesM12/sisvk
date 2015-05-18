@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :vk_empresas
+
+  resources :vk_enderecos
+
+  resources :vk_categoriaprodutos
+
   devise_for :users
   resources :vk_cidades
 

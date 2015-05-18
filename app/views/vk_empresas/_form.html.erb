@@ -1,0 +1,42 @@
+<%= form_for(@vk_empresa) do |f| %>
+  <% if @vk_empresa.errors.any? %>
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <% if @vk_empresa.errors.any? %>
+      <% @vk_empresa.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+       <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+<div class="row mar-bot40">
+    <div class="col-lg-3" >
+      <%= f.label :nome_empresa %><br>
+      <%= f.text_field :nome_empresa, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :cnpj_empresa %><br>
+    <%= f.text_field :cnpj_empresa %>
+  </div>
+  <div class="field">
+    <%= f.label :nome_responsavel %><br>
+    <%= f.text_field :nome_responsavel %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_telefone %><br>
+    <%= f.text_field :desc_telefone %>
+  </div>
+  <div class="field">
+    <%= f.label :resu_atividade %><br>
+    <%= f.text_field :resu_atividade %>
+  </div>
+  <div class="field">
+    <%= f.label :vk_endereco_id %><br>
+    <%= f.text_field :vk_endereco_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

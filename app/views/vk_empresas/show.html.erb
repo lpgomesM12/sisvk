@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome empresa:</strong>
+  <%= @vk_empresa.nome_empresa %>
+</p>
+
+<p>
+  <strong>Cnpj empresa:</strong>
+  <%= @vk_empresa.cnpj_empresa %>
+</p>
+
+<p>
+  <strong>Nome responsavel:</strong>
+  <%= @vk_empresa.nome_responsavel %>
+</p>
+
+<p>
+  <strong>Desc telefone:</strong>
+  <%= @vk_empresa.desc_telefone %>
+</p>
+
+<p>
+  <strong>Resu atividade:</strong>
+  <%= @vk_empresa.resu_atividade %>
+</p>
+
+<p>
+  <strong>Vk endereco:</strong>
+  <%= @vk_empresa.vk_endereco %>
+</p>
+
+<%= link_to 'Edit', edit_vk_empresa_path(@vk_empresa) %> |
+<%= link_to 'Back', vk_empresas_path %>

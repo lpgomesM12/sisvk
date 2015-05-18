@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome bairro:</strong>
+  <%= @vk_endereco.nome_bairro %>
+</p>
+
+<p>
+  <strong>Nome rua:</strong>
+  <%= @vk_endereco.nome_rua %>
+</p>
+
+<p>
+  <strong>Desc quadra:</strong>
+  <%= @vk_endereco.desc_quadra %>
+</p>
+
+<p>
+  <strong>Desc lote:</strong>
+  <%= @vk_endereco.desc_lote %>
+</p>
+
+<p>
+  <strong>Desc complemento:</strong>
+  <%= @vk_endereco.desc_complemento %>
+</p>
+
+<p>
+  <strong>Desc cep:</strong>
+  <%= @vk_endereco.desc_cep %>
+</p>
+
+<p>
+  <strong>Vk cidade:</strong>
+  <%= @vk_endereco.vk_cidade %>
+</p>
+
+<%= link_to 'Edit', edit_vk_endereco_path(@vk_endereco) %> |
+<%= link_to 'Back', vk_enderecos_path %>
