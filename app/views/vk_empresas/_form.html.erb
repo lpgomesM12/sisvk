@@ -11,23 +11,26 @@
   <% end %>
 
 <div class="row mar-bot40">
-    <div class="col-lg-3" >
+    <div class="col-lg-8" >
       <%= f.label :nome_empresa %><br>
       <%= f.text_field :nome_empresa, :class => 'form-control' %>
     </div>
+    <div class="col-lg-4" >
+      <%= f.label :cnpj_empresa %><br>
+      <%= f.text_field :cnpj_empresa, :class => 'form-control' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :cnpj_empresa %><br>
-    <%= f.text_field :cnpj_empresa %>
-  </div>
-  <div class="field">
+<div class="row mar-bot40">
+  <div class="col-lg-4">
     <%= f.label :nome_responsavel %><br>
-    <%= f.text_field :nome_responsavel %>
+    <%= f.text_field :nome_responsavel, :class => 'form-control' %>
   </div>
+</div>
   <div class="field">
     <%= f.label :desc_telefone %><br>
     <%= f.text_field :desc_telefone %>
   </div>
+
   <div class="field">
     <%= f.label :resu_atividade %><br>
     <%= f.text_field :resu_atividade %>
