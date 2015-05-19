@@ -25,16 +25,88 @@
     <%= f.label :nome_responsavel %><br>
     <%= f.text_field :nome_responsavel, :class => 'form-control' %>
   </div>
-</div>
   <div class="field">
     <%= f.label :desc_telefone %><br>
-    <%= f.text_field :desc_telefone %>
+    <%= f.text_field :desc_telefone, :class => 'form-control' %>
   </div>
-
+</div>
+<div class="row mar-bot40">
   <div class="field">
     <%= f.label :resu_atividade %><br>
-    <%= f.text_field :resu_atividade %>
+    <%= f.text_field :resu_atividade, :class => 'form-control' %>
   </div>
+</div>
+
+<div class="row mar-bot40">
+  <div class="col-lg-1">
+  </div>
+<div class="col-lg-2">
+  <h4>Endereço</h4>
+ </div>
+ </div>
+ <br>
+
+  <%=  f.fields_for :fd_endereco do |endereco| %>
+<div class="row mar-bot40">  
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-4">
+      <%= endereco.label :nome_bairro %><br>
+      <%= endereco.text_field :nome_bairro, :class => 'form-control' %>
+    </div>
+    <div class="col-lg-4">
+      <%= endereco.label :nome_rua %><br>
+      <%= endereco.text_field :nome_rua, :class => 'form-control' %>
+    </div>
+    <div class="col-lg-2">
+      <%= endereco.label :Quadra %><br>
+      <%= endereco.text_field :numr_quadra, :class => 'form-control' %>
+    </div>
+</div>
+ <br>
+ <div class="row mar-bot40">
+  <div class="col-lg-1">
+  </div>
+  <div class="col-lg-5">
+    <%= endereco.label :Complemento %><br>
+    <%= endereco.text_field :desc_complemento, :class => 'form-control' %>
+  </div>
+  <div class="col-lg-3">
+    <%= endereco.label :Ponto_referencia %><br>
+    <%= endereco.text_field :desc_pontoreferencia, :class => 'form-control' %>
+  </div>
+  <div class="col-lg-2">
+    <%= endereco.label :CEP %><br>
+    <%= endereco.text_field :numr_cep, :class => 'form-control' %>
+  </div>
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-1">
+  </div>
+  <%=  f.fields_for :vk_estado do |estado| %>
+      <div class="col-lg-4">
+        <%= estado.label :Estado %><br>
+        <%= estado.select :vk_estado_id, options_from_collection_for_select(VkEstado.all, 'id', 'nome_estado',@vk_estado), {:include_blank => true}, {:onchange => 'changeState(this)', :class => 'form-control' }%>
+      </div>
+  <%end%>
+  <%if @vk_cidade %>
+        <div class="col-lg-4">
+          <%= endereco.label :Cidade %>
+          <%= endereco.select :vk_cidade_id, options_from_collection_for_select(@vk_cidade, 'id', 'nome_cidade',@fd_cidade_setada),{}, :class => 'form-control'%>
+        </div>
+  <%else%>
+
+  <div class="col-lg-4">
+          <%= endereco.label :Cidade %><br>
+          <%= endereco.select :fd_cidade_id, [], {}, :class => 'form-control'%>
+  </div>
+
+ <%end%>
+</div>
+
+<%end%>
+
   <div class="field">
     <%= f.label :vk_endereco_id %><br>
     <%= f.text_field :vk_endereco_id %>

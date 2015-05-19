@@ -14,6 +14,7 @@ class VkEmpresasController < ApplicationController
 
   def new
     @vk_empresa = VkEmpresa.new
+    @vk_empresa.build_vk_endereco
     respond_with(@vk_empresa)
   end
 
