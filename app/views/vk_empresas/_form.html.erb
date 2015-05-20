@@ -16,22 +16,24 @@
       <%= f.text_field :nome_empresa, :class => 'form-control' %>
     </div>
     <div class="col-lg-4" >
-      <%= f.label :cnpj_empresa %><br>
+      <%= f.label :CNPJ %><br>
       <%= f.text_field :cnpj_empresa, :class => 'form-control' %>
     </div>
-  </div>
+</div>
+<br>
 <div class="row mar-bot40">
   <div class="col-lg-4">
     <%= f.label :nome_responsavel %><br>
     <%= f.text_field :nome_responsavel, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :desc_telefone %><br>
+  <div class="col-lg-4">
+    <%= f.label :Telefone %><br>
     <%= f.text_field :desc_telefone, :class => 'form-control' %>
   </div>
 </div>
+<br>
 <div class="row mar-bot40">
-  <div class="field">
+  <div class="col-lg-12 ">
     <%= f.label :resu_atividade %><br>
     <%= f.text_field :resu_atividade, :class => 'form-control' %>
   </div>
@@ -46,10 +48,8 @@
  </div>
  <br>
 
-  <%=  f.fields_for :fd_endereco do |endereco| %>
+<%=  f.fields_for :vk_endereco do |endereco| %>
 <div class="row mar-bot40">  
-    <div class="col-lg-1">
-    </div>
     <div class="col-lg-4">
       <%= endereco.label :nome_bairro %><br>
       <%= endereco.text_field :nome_bairro, :class => 'form-control' %>
@@ -60,30 +60,22 @@
     </div>
     <div class="col-lg-2">
       <%= endereco.label :Quadra %><br>
-      <%= endereco.text_field :numr_quadra, :class => 'form-control' %>
+      <%= endereco.text_field :desc_quadra, :class => 'form-control' %>
     </div>
 </div>
  <br>
  <div class="row mar-bot40">
-  <div class="col-lg-1">
-  </div>
   <div class="col-lg-5">
     <%= endereco.label :Complemento %><br>
     <%= endereco.text_field :desc_complemento, :class => 'form-control' %>
   </div>
-  <div class="col-lg-3">
-    <%= endereco.label :Ponto_referencia %><br>
-    <%= endereco.text_field :desc_pontoreferencia, :class => 'form-control' %>
-  </div>
   <div class="col-lg-2">
     <%= endereco.label :CEP %><br>
-    <%= endereco.text_field :numr_cep, :class => 'form-control' %>
+    <%= endereco.text_field :desc_cep, :class => 'form-control' %>
   </div>
 </div>
 <br>
 <div class="row mar-bot40">
-  <div class="col-lg-1">
-  </div>
   <%=  f.fields_for :vk_estado do |estado| %>
       <div class="col-lg-4">
         <%= estado.label :Estado %><br>
@@ -93,13 +85,13 @@
   <%if @vk_cidade %>
         <div class="col-lg-4">
           <%= endereco.label :Cidade %>
-          <%= endereco.select :vk_cidade_id, options_from_collection_for_select(@vk_cidade, 'id', 'nome_cidade',@fd_cidade_setada),{}, :class => 'form-control'%>
+          <%= endereco.select :vk_cidade_id, options_from_collection_for_select(@vk_cidade, 'id', 'nome_cidade',@vk_cidade_setada),{}, :class => 'form-control'%>
         </div>
   <%else%>
 
   <div class="col-lg-4">
           <%= endereco.label :Cidade %><br>
-          <%= endereco.select :fd_cidade_id, [], {}, :class => 'form-control'%>
+          <%= endereco.select :vk_cidade_id, [], {}, :class => 'form-control'%>
   </div>
 
  <%end%>
@@ -107,11 +99,54 @@
 
 <%end%>
 
-  <div class="field">
-    <%= f.label :vk_endereco_id %><br>
-    <%= f.text_field :vk_endereco_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+</div>
+
+
+<hr/>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="submit" class="btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+  </button>  
+
 <% end %>
+
+
+
+<script>
+
+
+
+
+jQuery(function($){
+
+  $("#fd_cliente_data_nascimento").mask("99/99/9999");
+  $("#fd_cliente_desc_cpf").mask("999.999.999.99");
+  $("#fd_cliente_desc_celular").mask("(99)9999-9999");
+  $("#fd_cliente_desc_telefone").mask("(99)9999-9999");
+  $("#fd_cliente_fd_endereco_attributes_numr_cep").mask("99.999-999");
+
+
+});
+ 
+    function changeState(state){
+        $.ajax({
+          url: '<%= listarCidade_path %>',
+          data : {id : state.value},
+          success: function(data){
+            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').empty();
+            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').html('<option>Carregando...</option>');
+            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').attr('disabled', 'disabled');
+            var options = "";
+            for (var i in data) {
+              var item = data[i];
+              options += "<option value='"+item.id+"'>"+item.name+"</option>"
+            };
+   
+            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').html(options);
+            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').removeAttr('disabled');          
+          }
+        })
+      }
+  </script>

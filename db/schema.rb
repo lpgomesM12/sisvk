@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518165204) do
+ActiveRecord::Schema.define(version: 20150519231816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,5 +85,25 @@ ActiveRecord::Schema.define(version: 20150518165204) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "vk_produtos", force: true do |t|
+    t.string   "nome_produto"
+    t.string   "desc_produto"
+    t.decimal  "valr_produto"
+    t.string   "desc_titulo"
+    t.boolean  "flag_atacado"
+    t.boolean  "flag_varejo"
+    t.boolean  "flag_novo"
+    t.boolean  "flag_anunciado"
+    t.integer  "vk_categoriaproduto_id"
+    t.integer  "vk_empresa_id"
+    t.integer  "user_inclusao"
+    t.integer  "integer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vk_produtos", ["vk_categoriaproduto_id"], name: "index_vk_produtos_on_vk_categoriaproduto_id", using: :btree
+  add_index "vk_produtos", ["vk_empresa_id"], name: "index_vk_produtos_on_vk_empresa_id", using: :btree
 
 end

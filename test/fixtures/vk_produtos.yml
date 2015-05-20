@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_produto: MyString
+  desc_produto: MyString
+  valr_produto: 9.99
+  desc_titulo: MyString
+  flag_atacado: false
+  flag_varejo: false
+  flag_novo: false
+  flag_anunciado: false
+  vk_categoriaproduto_id: 
+  vk_empresa_id: 
+  user_id: 
+
+two:
+  nome_produto: MyString
+  desc_produto: MyString
+  valr_produto: 9.99
+  desc_titulo: MyString
+  flag_atacado: false
+  flag_varejo: false
+  flag_novo: false
+  flag_anunciado: false
+  vk_categoriaproduto_id: 
+  vk_empresa_id: 
+  user_id: 

@@ -1,0 +1,78 @@
+<%if notice %>
+  <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+     <%= notice %>
+</div>
+<%end%>
+
+<p>
+  <strong>Nome produto:</strong>
+  <%= @vk_produto.nome_produto %>
+</p>
+
+<p>
+  <strong>Descrição Produto:</strong>
+  <%= @vk_produto.desc_produto %>
+</p>
+
+<p>
+  <strong>Valor Produto:</strong>
+  <%= @vk_produto.valr_produto %>
+</p>
+
+<p>
+  <strong>Descrição Titulo:</strong>
+  <%= @vk_produto.desc_titulo %>
+</p>
+
+<p>
+  <strong>Venda no Atacado:</strong>
+  <% if @vk_produto.flag_atacado %>
+     Sim
+   <%else%>
+     Não
+  <%end%>
+</p>
+
+<p>
+  <strong>Venda no Varejo:</strong>
+  <% if @vk_produto.flag_varejo %>
+    Sim
+   <%else%>
+     Não
+  <%end%>
+</p>
+
+<p>
+  <strong>Produto Novo:</strong>
+  <% if @vk_produto.flag_novo %>
+    Sim
+   <%else%>
+     Não
+  <%end%>
+</p>
+
+<p>
+  <strong>Produto Anunciado:</strong>
+  <% if @vk_produto.flag_anunciado %>
+    Sim
+   <%else%>
+     Não
+  <%end%>
+</p>
+
+<p>
+  <strong>Vk categoriaproduto:</strong>
+  <%= @vk_produto.vk_categoriaproduto.nome_categoria %>
+</p>
+
+<hr>
+<div class="btn-group">          
+  <%= link_to edit_vk_produto_path(@vk_produto), :class => "btn btn-default btn-sm" do %>
+    <span class="glyphicon glyphicon-pencil"></span> Editar
+  <% end %>
+  <%= link_to vk_produtos_path, :class => "btn btn-default btn-sm" do %>
+    <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %>       
+</div>
+

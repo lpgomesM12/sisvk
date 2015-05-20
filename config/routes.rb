@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :vk_produtos
+
   resources :vk_empresas
 
   resources :vk_enderecos
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   root  'static_pages#home'
   
 
+  match '/listarCidade', to: 'vk_cidades#get_cities', via: 'get'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

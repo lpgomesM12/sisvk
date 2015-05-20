@@ -43,6 +43,6 @@ class VkEmpresasController < ApplicationController
     end
 
     def vk_empresa_params
-      params.require(:vk_empresa).permit(:nome_empresa, :cnpj_empresa, :nome_responsavel, :desc_telefone, :resu_atividade, :vk_endereco_id)
+      params.require(:vk_empresa).permit(:nome_empresa, :cnpj_empresa, :nome_responsavel, :desc_telefone, :resu_atividade, fd_endereco_attributes: [ :id, :nome_bairro , :nome_rua, :desc_quadra, :desc_lote, :desc_complemento, :desc_cep, :vk_cidade_id])
     end
 end

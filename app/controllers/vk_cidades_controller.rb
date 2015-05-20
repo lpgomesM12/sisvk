@@ -1,7 +1,7 @@
 class VkCidadesController < ApplicationController
   before_action :set_vk_cidade, only: [:show, :edit, :update, :destroy]
 
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
 
   # GET /vk_cidades
   def index
@@ -16,6 +16,13 @@ class VkCidadesController < ApplicationController
   def new
     @vk_cidade = VkCidade.new
   end
+
+    def get_cities
+    vk_cidades = VkCidade.find :all, :conditions => {:vk_estado_id => params[:id]}, :order => "nome_cidade ASC"
+    vk_cidades_json = vk_cidades.map {|item| {:id => item.id, :name => item.nome_cidade}}
+
+    render :json => vk_cidades_json
+  end 
 
   # GET /vk_cidades/1/edit
   def edit

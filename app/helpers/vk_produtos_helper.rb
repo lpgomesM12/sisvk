@@ -1,0 +1,2 @@
+module VkProdutosHelper
+end
