@@ -24,7 +24,7 @@ class VkProdutosController < ApplicationController
     @vk_produto = VkProduto.new(vk_produto_params)
     @vk_produto.save
 
-    index()
+     redirect_to vk_produtos_path
 
   end
 

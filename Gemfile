@@ -6,6 +6,7 @@ gem 'validates_cpf_cnpj'
 gem 'execjs'
 
 gem 'devise'
+gem "paperclip", "~> 4.2"
 
 #gem 'pg'  
 gem 'pg', '~> 0.17.1'
