@@ -66,6 +66,8 @@
   <%= @vk_produto.vk_categoriaproduto.nome_categoria %>
 </p>
 
+<%= image_tag @vk_produto.vk_fotoproduto.image.url(:medium) %>
+
 <hr>
 <div class="btn-group">          
   <%= link_to edit_vk_produto_path(@vk_produto), :class => "btn btn-default btn-sm" do %>

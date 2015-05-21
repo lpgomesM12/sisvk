@@ -14,6 +14,7 @@ class VkProdutosController < ApplicationController
 
   def new
     @vk_produto = VkProduto.new
+    2.times{@vk_produto.vk_fotoproduto.build}
     respond_with(@vk_produto)
   end
 
@@ -44,6 +45,6 @@ class VkProdutosController < ApplicationController
     end
 
     def vk_produto_params
-      params.require(:vk_produto).permit(:nome_produto, :desc_produto, :valr_produto, :desc_titulo, :flag_atacado, :flag_varejo, :flag_novo, :flag_anunciado, :vk_categoriaproduto_id, :vk_empresa_id, :user_id)
+      params.require(:vk_produto).permit(:nome_produto, :desc_produto, :valr_produto, :desc_titulo, :flag_atacado, :flag_varejo, :flag_novo, :flag_anunciado, :vk_categoriaproduto_id, :vk_empresa_id, vk_fotoproduto_attributes: [:image])
     end
 end
