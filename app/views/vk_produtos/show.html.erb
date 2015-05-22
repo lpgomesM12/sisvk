@@ -66,7 +66,11 @@
   <%= @vk_produto.vk_categoriaproduto.nome_categoria %>
 </p>
 
-<%= image_tag @vk_produto.vk_fotoproduto.image.url(:medium) %>
+<ul>
+  <%for fotoproduto in @vk_produto.vk_fotoproduto %>
+  <li><%= link_to image_tag(fotoproduto.image.url(:medium))%></li>
+  <%end%>
+</ul>
 
 <hr>
 <div class="btn-group">          

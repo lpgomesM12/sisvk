@@ -19,6 +19,7 @@ class VkProdutosController < ApplicationController
   end
 
   def edit
+    2.times{@vk_produto.vk_fotoproduto.build}
   end
 
   def create
