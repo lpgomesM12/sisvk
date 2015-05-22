@@ -62,14 +62,15 @@
   </div>
 </div>
       
-
-<%= f.fields_for :vk_fotoproduto do |fotoproduto|%>
-    <%if fotoproduto.object.new_record? %>
-      <p>
-        <%= fotoproduto.file_field :image%>
-      </p>
+ <div class="row mar-bot40">
+    <%= f.fields_for :vk_fotoproduto do |fotoproduto|%>    
+        <%if fotoproduto.object.new_record? %>
+       <div class="col-lg-2" >
+            <%= fotoproduto.file_field :image%>
+       </div>
+        <%end%>
     <%end%>
-<%end%>
+  </div>
 
 <h4>Imagens do Produto</h4>
 
