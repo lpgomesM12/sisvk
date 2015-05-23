@@ -62,15 +62,19 @@
 </p>
 
 <p>
-  <strong>Vk categoriaproduto:</strong>
+  <strong>Categoria:</strong>
   <%= @vk_produto.vk_categoriaproduto.nome_categoria %>
 </p>
 
-<ul>
-  <%for fotoproduto in @vk_produto.vk_fotoproduto %>
-  <li><%= link_to image_tag(fotoproduto.image.url(:medium))%></li>
-  <%end%>
-</ul>
+<div class="row mar-bot40">
+  <ul>
+    <%for fotoproduto in @vk_produto.vk_fotoproduto %>
+    <div class="col-lg-4" >
+      <li><%= link_to image_tag(fotoproduto.image.url(:thumb  ))%></li>
+    </div>
+    <%end%>
+  </ul>
+</div>
 
 <hr>
 <div class="btn-group">          

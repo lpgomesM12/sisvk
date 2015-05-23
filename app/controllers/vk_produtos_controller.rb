@@ -25,9 +25,7 @@ class VkProdutosController < ApplicationController
   def create
     @vk_produto = VkProduto.new(vk_produto_params)
     @vk_produto.save
-
-     redirect_to vk_produtos_path
-
+    redirect_to vk_produtos_path
   end
 
   def update
