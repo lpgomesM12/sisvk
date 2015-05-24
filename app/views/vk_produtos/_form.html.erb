@@ -71,10 +71,10 @@
 
 <h4>Imagens do Produto</h4>
 
-<%=f.fields_for :vk_fotoproduto do |fotoproduto|%>
-  <% unless fotoproduto.object.new_record? %>
-   <%= link_to image_tag(fotoproduto.object.image.url(:thumb)),
-        fotoproduto.object.image.url(:original)%>
+<%=f.fields_for :vk_fotoproduto do |foto|%>
+  <% unless foto.object.new_record? %>
+   <%= link_to image_tag(foto.object.image.url(:thumb)),
+        foto.object.image.url(:original)%>
   <%end%>
 <%end%>
 <!--        

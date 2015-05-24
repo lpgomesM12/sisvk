@@ -1,0 +1,13 @@
+<table class="table table-hover">
+  <thead>
+  </thead>
+
+  <tbody>
+    <% @vk_produtos.each do |vk_produto| %>
+      <tr>
+        <td><%= vk_produto.nome_produto %></td>
+        <td><%= vk_produto.valr_produto %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

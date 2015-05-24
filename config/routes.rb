@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :vk_estados
 
-  root  'static_pages#home'
+  root  'site#index'
   
 
   match '/listarCidade', to: 'vk_cidades#get_cities', via: 'get'
