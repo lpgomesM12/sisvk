@@ -1,14 +1,40 @@
 
-<ul  class="list-group">
+
+<%=search_form_for @q, url: pesquisa_path, html: {}  do |f| %>
+<div class="row">
+ <div class="col-lg-12">
+    <div class="input-group">
+
+      <%= f.search_field  :nome_produto_cont, :class => 'form-control', placeholder: 'Digite o nome do produto'%>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+           <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+<%end%>
+
+<hr>
+
+<ul class="list-group">
    <% @vk_produtos.each do |vk_produto| %>
 <li class="list-group-item">
-  <%for foto in vk_produto.vk_fotoproduto%>
-           <%= link_to image_tag(foto.image.url(:thumb  ))%>
-           <%break%>
-  <%end%>
-  <%= vk_produto.desc_titulo %>
-  <%= vk_produto.nome_produto %>
-  <%= vk_produto.valr_produto %>
+  <div class="row">
+     <div class="col-lg-2">
+    <%for foto in vk_produto.vk_fotoproduto%>
+             <%= link_to image_tag(foto.image.url(:thumb))%>
+             <%break%>
+    <%end%>
+    </div>
+    <div class="col-lg-8">
+      <%= vk_produto.desc_titulo %>
+     </div>
+      <div class="col-lg-2">
+       <%= vk_produto.valr_produto %>
+     </div>
+  </div>
 </li>
   <%end%>
 </ul>

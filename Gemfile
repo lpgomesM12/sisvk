@@ -7,6 +7,7 @@ gem 'execjs'
 
 gem 'devise'
 gem "paperclip", "~> 4.2"
+gem 'ransack'
 
 #gem 'pg'  
 gem 'pg', '~> 0.17.1'
