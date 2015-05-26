@@ -1,13 +1,15 @@
-<table class="table table-hover">
-  <thead>
-  </thead>
 
-  <tbody>
-    <% @vk_produtos.each do |vk_produto| %>
-      <tr>
-        <td><%= vk_produto.nome_produto %></td>
-        <td><%= vk_produto.valr_produto %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul  class="list-group">
+   <% @vk_produtos.each do |vk_produto| %>
+<li class="list-group-item">
+  <%for foto in vk_produto.vk_fotoproduto%>
+           <%= link_to image_tag(foto.image.url(:thumb  ))%>
+           <%break%>
+  <%end%>
+  <%= vk_produto.desc_titulo %>
+  <%= vk_produto.nome_produto %>
+  <%= vk_produto.valr_produto %>
+</li>
+  <%end%>
+</ul>
+
