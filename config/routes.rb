@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :vk_vitrines
+
   resources :vk_produtos
 
   resources :vk_empresas

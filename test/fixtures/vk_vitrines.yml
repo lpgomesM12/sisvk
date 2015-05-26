@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_vitrine: MyString
+  desc_vitrine: MyString
+  vk_cidade_id: 
+
+two:
+  nome_vitrine: MyString
+  desc_vitrine: MyString
+  vk_cidade_id: 

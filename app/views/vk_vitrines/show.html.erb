@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome vitrine:</strong>
+  <%= @vk_vitrine.nome_vitrine %>
+</p>
+
+<p>
+  <strong>Desc vitrine:</strong>
+  <%= @vk_vitrine.desc_vitrine %>
+</p>
+
+<p>
+  <strong>Vk cidade:</strong>
+  <%= @vk_vitrine.vk_cidade %>
+</p>
+
+<%= link_to 'Edit', edit_vk_vitrine_path(@vk_vitrine) %> |
+<%= link_to 'Back', vk_vitrines_path %>
