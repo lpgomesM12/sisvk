@@ -135,17 +135,17 @@ jQuery(function($){
           url: '<%= listarCidade_path %>',
           data : {id : state.value},
           success: function(data){
-            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').empty();
-            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').html('<option>Carregando...</option>');
-            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').attr('disabled', 'disabled');
+            $('#vk_empresa_vk_endereco_attributes_vk_cidade_id').empty();
+            $('#vk_empresa_vk_endereco_attributes_vk_cidade_id').html('<option>Carregando...</option>');
+            $('#vk_empresa_vk_endereco_attributes_vk_cidade_id').attr('disabled', 'disabled');
             var options = "";
             for (var i in data) {
               var item = data[i];
               options += "<option value='"+item.id+"'>"+item.name+"</option>"
             };
    
-            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').html(options);
-            $('#fd_cliente_fd_endereco_attributes_fd_cidade_id').removeAttr('disabled');          
+            $('#vk_empresa_vk_endereco_attributes_vk_cidade_id').html(options);
+            $('#vk_empresa_vk_endereco_attributes_vk_cidade_id').removeAttr('disabled');          
           }
         })
       }
