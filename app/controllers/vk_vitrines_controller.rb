@@ -18,6 +18,7 @@ class VkVitrinesController < ApplicationController
   end
 
   def edit
+    @vk_vitrinePai = @vk_vitrine.father_id
   end
 
   def create

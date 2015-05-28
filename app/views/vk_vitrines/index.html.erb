@@ -1,13 +1,13 @@
-<h1>Listing vk_vitrines</h1>
 
-<table>
-  <thead>
+<div class="panel panel-default">
+<!-- Default panel contents -->
+<div class="panel-heading"><h3 class="panel-title">Listar Vitrines</h3></div>
+
+<table class="table table-hover">  <thead>
     <tr>
       <th>Nome vitrine</th>
-      <th>Desc vitrine</th>
-      <th>Vk cidade</th>
-      <th></th>
-      <th></th>
+      <th>Descrição</th>
+      <th>Cidade</th>
       <th></th>
     </tr>
   </thead>
@@ -17,15 +17,29 @@
       <tr>
         <td><%= vk_vitrine.nome_vitrine %></td>
         <td><%= vk_vitrine.desc_vitrine %></td>
-        <td><%= vk_vitrine.vk_cidade %></td>
-        <td><%= link_to 'Show', vk_vitrine %></td>
-        <td><%= link_to 'Edit', edit_vk_vitrine_path(vk_vitrine) %></td>
-        <td><%= link_to 'Destroy', vk_vitrine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <td><%= vk_vitrine.vk_cidade.nome_cidade %></td>
 
-<br>
+          <td align='right'>
+            <div class="btn-group">
+              <%= link_to vk_vitrine, :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-list-alt"></span> Exibir
+              <% end %>             
+              <%= link_to edit_vk_vitrine_path(vk_vitrine), :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-pencil"></span> Editar
+              <% end %>             
+              <%= link_to vk_vitrine , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-trash"></span> Excluir
+             <% end %>            
+            </div>
+          </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<%= link_to 'New Vk vitrine', new_vk_vitrine_path %>
+</div>
+
+
+<%= link_to new_vk_vitrine_path, :class => "btn btn-default btn-sm" do %>
+ <span class="glyphicon glyphicon-file"></span>Novo
+<% end %>
