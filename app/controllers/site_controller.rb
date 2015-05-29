@@ -6,4 +6,8 @@ class SiteController < ApplicationController
    @vk_produtos = @q.result
    #respond_with(@vk_produtos)
  end
+
+ def home
+ 	
+ end
 end

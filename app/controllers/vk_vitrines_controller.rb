@@ -3,6 +3,21 @@ class VkVitrinesController < ApplicationController
 
   respond_to :html
 
+
+  def buscaVitrines
+
+  if params[:father_id].blank?
+    vk_vitrine = VkVitrine.all()
+  else
+    vk_vitrine = VkVitrine.where('father_id = ' + params[:father_id].to_s)
+  end
+
+   vk_vitrine_json = vk_vitrine.map{|item|{:id => item.id, :nome_vitrine => item.nome_vitrine}}
+   render :json => vk_vitrine_json
+
+  end
+
+
   def index
     @vk_vitrines = VkVitrine.all
     respond_with(@vk_vitrines)
@@ -43,6 +58,6 @@ class VkVitrinesController < ApplicationController
     end
 
     def vk_vitrine_params
-      params.require(:vk_vitrine).permit(:nome_vitrine, :desc_vitrine, :vk_cidade_id)
+      params.require(:vk_vitrine).permit(:father_id, :nome_vitrine, :desc_vitrine, :vk_cidade_id)
     end
 end

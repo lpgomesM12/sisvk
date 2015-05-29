@@ -1,0 +1,44 @@
+ <div class="divVitrines">
+    <div class="row mar-bot40">
+    </div>
+ </div>
+
+
+<div class="row mar-bot40">
+	<div class="col-lg-4" >
+	</div>
+	 <div class="col-lg-6" >
+		<div class="btn-group-vertical" role="group">
+		</div>
+	 </div>
+</div>
+
+
+
+<script>
+ function buscaVitrines(father_id) {
+
+  $.ajax({
+    url: '<%= buscaVitrines_path %>',
+    data : 
+    {
+        father_id : father_id
+    },
+    success: function(data){
+
+    $("div.btn-group-vertical").html("");
+      for (var i in data) {
+        var item = data[i];
+
+        $("div.btn-group-vertical").append("<button style='width:250px' type='button' onclick='buscaVitrines("+ item.id + ");' class='btn btn-default btn-lg'>" + item.nome_vitrine + "</button>");
+
+      };
+      $("div.btn-group-vertical").append("<button type='button' onclick='buscaVitrines();' class='btn btn-success btn-lg'>Voltar</button>");
+    }
+  })  
+}
+
+
+buscaVitrines();
+
+</script>

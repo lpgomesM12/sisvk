@@ -1,0 +1,29 @@
+<h1>Listing vk_empresavitrines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vk vitrine</th>
+      <th>Vk empresa</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vk_empresavitrines.each do |vk_empresavitrine| %>
+      <tr>
+        <td><%= vk_empresavitrine.vk_vitrine %></td>
+        <td><%= vk_empresavitrine.vk_empresa %></td>
+        <td><%= link_to 'Show', vk_empresavitrine %></td>
+        <td><%= link_to 'Edit', edit_vk_empresavitrine_path(vk_empresavitrine) %></td>
+        <td><%= link_to 'Destroy', vk_empresavitrine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vk empresavitrine', new_vk_empresavitrine_path %>

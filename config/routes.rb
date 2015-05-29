@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :vk_empresavitrines
+
   resources :vk_vitrines
 
   resources :vk_produtos
@@ -15,10 +17,11 @@ Rails.application.routes.draw do
 
   resources :vk_estados
 
-  root  'site#index'
+  root  'site#home'
   
 
   match '/listarCidade', to: 'vk_cidades#get_cities', via: 'get'
+  match '/buscaVitrines', to: 'vk_vitrines#buscaVitrines', via: 'get'
 
   match '/pesquisa', to: 'site#index', via: 'get'
 

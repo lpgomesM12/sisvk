@@ -1,0 +1,25 @@
+<%= form_for(@vk_empresavitrine) do |f| %>
+  <% if @vk_empresavitrine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vk_empresavitrine.errors.count, "error") %> prohibited this vk_empresavitrine from being saved:</h2>
+
+      <ul>
+      <% @vk_empresavitrine.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :vk_vitrine_id %><br>
+    <%= f.text_field :vk_vitrine_id %>
+  </div>
+  <div class="field">
+    <%= f.label :vk_empresa_id %><br>
+    <%= f.text_field :vk_empresa_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

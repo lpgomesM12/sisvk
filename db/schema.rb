@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527163247) do
+ActiveRecord::Schema.define(version: 20150529163012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 20150527163247) do
   end
 
   add_index "vk_empresas", ["vk_endereco_id"], name: "index_vk_empresas_on_vk_endereco_id", using: :btree
+
+  create_table "vk_empresavitrines", force: true do |t|
+    t.integer  "vk_vitrine_id"
+    t.integer  "vk_empresa_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vk_empresavitrines", ["vk_empresa_id"], name: "index_vk_empresavitrines_on_vk_empresa_id", using: :btree
+  add_index "vk_empresavitrines", ["vk_vitrine_id"], name: "index_vk_empresavitrines_on_vk_vitrine_id", using: :btree
 
   create_table "vk_enderecos", force: true do |t|
     t.string   "nome_bairro"
