@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   match '/listarCidade', to: 'vk_cidades#get_cities', via: 'get'
   match '/buscaVitrines', to: 'vk_vitrines#buscaVitrines', via: 'get'
 
+  get '/buscaPorVitrine/:vk_vitrine_id', to: 'site#index', as: 'buscaPorVitrine'
+
   match '/pesquisa', to: 'site#index', via: 'get'
 
 

@@ -14,7 +14,6 @@
 </div>
 
 
-
 <script>
  function buscaVitrines(father_id) {
 
@@ -30,15 +29,21 @@
       for (var i in data) {
         var item = data[i];
 
-        $("div.btn-group-vertical").append("<button style='width:250px' type='button' onclick='buscaVitrines("+ item.id + ");' class='btn btn-default btn-lg'>" + item.nome_vitrine + "</button>");
-
+        $("div.btn-group-vertical").append("<a href='buscaPorVitrine/"+item.id+"' class='btn btn-default btn-lg' role='button'>"+ item.nome_vitrine + "</a>");
       };
-      $("div.btn-group-vertical").append("<button type='button' onclick='buscaVitrines();' class='btn btn-success btn-lg'>Voltar</button>");
+        $("div.btn-group-vertical").append("<button type='button'  class='btn btn-primary btn-lg'>Voltar</button>");
     }
   })  
 }
 
 
+http://localhost:3000/buscaPorVitrine/1
+
 buscaVitrines();
+
+  //      $("div.btn-group-vertical").append("<a href='<%=buscaPorVitrine_path('+item.nome_vitrine +')%>' class='btn btn-default btn-lg' role='button'>"+ item.nome_vitrine + "</a>");
+
+
+
 
 </script>

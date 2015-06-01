@@ -1,18 +1,17 @@
-<%=search_form_for @q, url: pesquisa_path, html: {}  do |f| %>
-<div class="row">
- <div class="col-lg-12">
-    <div class="input-group">
-
-      <%= f.search_field  :desc_titulo_cont, :class => 'form-control', placeholder: 'Digite o nome do produto'%>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">
-           <span class="glyphicon glyphicon-search"></span>
-        </button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-<%end%>
+<%= form_tag nil, method: 'GET' do %>
+  <label >Nome</label><br>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group">
+        <input id="q" name="q" type="text" class="form-control" placeholder="Nome">
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" >Buscar</button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div><!-- /.row -->
+  <br />  
+<% end %>
 
 <hr>
 
@@ -37,3 +36,19 @@
   <%end%>
 </ul>
 
+
+<%#=search_form_for @q, url: pesquisa_path, html: {}  do |f| %>
+<!--<div class="row">
+ <div class="col-lg-12">
+    <div class="input-group">
+
+      <%#= f.search_field  :desc_titulo_cont, :class => 'form-control', placeholder: 'Digite o nome do produto'%>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+           <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </span>
+    </div>
+  </div>
+</div>-->
+<%#end%>
