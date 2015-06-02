@@ -11,23 +11,22 @@ class VkProduto < ActiveRecord::Base
     if query
     	query = query.downcase
      self.where('lower(nome_produto)like ?',"%#{query}%") 
-     #self.joins('LEFT JOIN vk_empresavitrines vk on vk_empresa_id = vk.vk_empresa_id').where('(sp.NOME_pessoa) like ? and sp.sivic_igreja_id = ? and sp.data_exclusao is null', "%#{query}%", sivic_igreja_id).order('NOME_pessoa')
     else
      self.all
-      #self.joins('LEFT JOIN sivic_pessoas sp on sivic_pessoa_id = sp.id').where('sp.sivic_igreja_id = ? and sp.user_exclusao is null',sivic_igreja_id).order('NOME_pessoa')
     end    
   end
 
   def self.busca_nome_vitrine(nome,vitrine)
-    if query
-      query = query.downcase
-     self.where('lower(nome_produto)like ?',"%#{query}%") 
-     #self.joins('LEFT JOIN vk_empresavitrines vk on vk_empresa_id = vk.vk_empresa_id').where('(sp.NOME_pessoa) like ? and sp.sivic_igreja_id = ? and sp.data_exclusao is null', "%#{query}%", sivic_igreja_id).order('NOME_pessoa')
-    else
-     self.all
-      #self.joins('LEFT JOIN sivic_pessoas sp on sivic_pessoa_id = sp.id').where('sp.sivic_igreja_id = ? and sp.user_exclusao is null',sivic_igreja_id).order('NOME_pessoa')
-    end  
+    if nome
+      nome = nome.downcase
+      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ? and lower(nome_produto)like ? ',vitrine,"%#{nome}%") 
+     else
+      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ?',vitrine) 
+    end
   end
 
+  def self.busca_por_vitrine(vitrine)
+      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ?',vitrine)
+  end
 
 end

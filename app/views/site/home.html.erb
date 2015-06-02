@@ -29,7 +29,7 @@
       for (var i in data) {
         var item = data[i];
 
-        $("div.btn-group-vertical").append("<a href='buscaPorVitrine/vk_vitrine_id="+item.id+"' class='btn btn-default btn-lg' role='button'>"+ item.nome_vitrine + "</a>");
+        $("div.btn-group-vertical").append("<a href='buscaPorVitrine/"+item.id+"' class='btn btn-default btn-lg' role='button'>"+ item.nome_vitrine + "</a>");
       };
         $("div.btn-group-vertical").append("<button type='button'  class='btn btn-primary btn-lg'>Voltar</button>");
     }
@@ -37,13 +37,8 @@
 }
 
 
-http://localhost:3000/buscaPorVitrine/1
 
 buscaVitrines();
-
-  //      $("div.btn-group-vertical").append("<a href='<%=buscaPorVitrine_path('+item.nome_vitrine +')%>' class='btn btn-default btn-lg' role='button'>"+ item.nome_vitrine + "</a>");
-
-
 
 
 </script>
