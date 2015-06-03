@@ -4,17 +4,23 @@
   <title>VK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   <%= stylesheet_link_tag    "application" %>
-  <%= stylesheet_link_tag    "Site" %>
+  <%= stylesheet_link_tag    "Style" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-	  <%= render 'layouts/menu' %>
+	  <%#= render 'layouts/menu' %>
 </head>
 <body>
 
-	<div class="container">
-		  <!--<h3 class="text-muted">Olhe K</h3>--> 
-		<%= yield %>
+	<div class="container-fluid">
+		 <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
+            <%= yield %>  
+        </div>
+     </div>
+
 	</div>
 
 </body>
