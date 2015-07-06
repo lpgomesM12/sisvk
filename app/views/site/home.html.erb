@@ -7,13 +7,12 @@
 	 </div>
 </div>
 
-
 <script>
  function buscaVitrines(father_id) {
 
   $.ajax({
     url: '<%= buscaVitrines_path %>',
-    data : 
+    data :
     {
         father_id : father_id
     },
@@ -27,7 +26,7 @@
       };
         $("div.btn-group-vertical").append("<button type='button'  class='btn btn-primary btn-lg'>Voltar</button>");
     }
-  })  
+  })
 }
 
 
