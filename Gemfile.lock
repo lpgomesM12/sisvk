@@ -197,3 +197,6 @@ DEPENDENCIES
   uglifier (= 2.1.1)
   validates_cpf_cnpj
   will_paginate (~> 3.0.5)
+
+BUNDLED WITH
+   1.10.4
