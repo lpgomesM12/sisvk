@@ -22,14 +22,14 @@
   <%= @vk_produto.desc_produto %>
 </p>
 
-<p>
+<!--<p>
   <strong>Valor Produto:</strong>
-  <%= @vk_produto.valr_produto %>
+  <%#= @vk_produto.valr_produto %>
 </p>
 
 <p>
   <strong>Descrição Titulo:</strong>
-  <%= @vk_produto.desc_titulo %>
+  <%#= @vk_produto.desc_titulo %>
 </p>
 
 <p>
@@ -70,8 +70,9 @@
 
 <p>
   <strong>Categoria:</strong>
-  <%= @vk_produto.vk_categoriaproduto.nome_categoria %>
+  <%#= @vk_produto.vk_categoriaproduto.nome_categoria %>
 </p>
+-->
 
 <div class="row mar-bot40">
   <ul>
@@ -85,12 +86,11 @@
 
   </div>
 </div>
-<div class="btn-group">          
+<div class="btn-group">
   <%= link_to edit_vk_produto_path(@vk_produto), :class => "btn btn-default btn-sm" do %>
     <span class="glyphicon glyphicon-pencil"></span> Editar
   <% end %>
   <%= link_to vk_produtos_path, :class => "btn btn-default btn-sm" do %>
     <span class="glyphicon glyphicon-arrow-left"></span> Voltar
-  <% end %>       
+  <% end %>
 </div>
-

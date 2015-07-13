@@ -1,0 +1,166 @@
+  <%= form_for(@vk_anuncio) do |f| %>
+    <% if @vk_anuncio.errors.any? %>
+      <div class="alert alert-danger alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <% if @vk_anuncio.errors.any? %>
+        <% @vk_anuncio.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+         <% end %>
+        <% end %>
+      </div>
+
+  <% end %>
+
+<div class="row mar-bot40">
+    <div class="col-lg-12">
+      <%= f.label :Produto %><br />
+      <%= f.hidden_field :vk_produtos_id%>
+            <div class="input-group">
+                <input id="nome_produto" name="nome_produto" value="<%=@vk_anuncio.vk_produtos.nome_produto rescue nil%>" disabled="true" onkeypress="" type="text" class="form-control" placeholder="Busque pelo Produto">
+              <span class="input-group-btn">
+                <button class="btn btn-success" type="button" onclick="$('#myModal1').modal('show');">Buscar</button>
+            </span>
+         </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+  <br />
+
+<div class="row mar-bot40">
+    <div class="col-lg-12" >
+      <%= f.label :Titulo %><br>
+      <%= f.text_field :desc_titulo, :class => 'form-control'  %>
+    </div>
+</div>
+
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-12" >
+    <%= f.label :Descricao %><br>
+    <%= f.text_area :desc_anuncio, :class => 'form-control' %>
+  </div>
+</div>
+<br>
+<div class="row mar-bot40">
+    <div class="col-lg-2" >
+      <%= f.label :valr_produto %><br>
+      <%= f.text_field :valr_produto, :class => 'form-control' %>
+    </div>
+    <div class="col-lg-2" >
+      <%= f.label :valor_com_desconto %><br>
+      <%= f.text_field :valr_comdesconto, :class => 'form-control' %>
+    </div>
+    <div class="col-lg-2" >
+      <%= f.label :data_inicio %><br>
+      <%= f.text_field :data_inicio, :class => 'form-control' %>
+    </div>
+    <div class="col-lg-2" >
+      <%= f.label :data_fim %><br>
+      <%= f.text_field :data_fim, :class => 'form-control' %>
+    </div>
+    <div class="col-lg-2" >
+      <%= f.label :Qtd_Disponivel %><br>
+      <%= f.number_field :numr_qtddisponivel, :class => 'form-control' %>
+    </div>
+    <div class="col-lg-1" >
+      <%= f.label :Ilimitado %><br>
+      <%= f.check_box :flag_ilimitado, :class => 'form-control' %>
+    </div>
+</div>
+<br>
+<%if user_signed_in?%>
+  <!--Capturando usuario logado-->
+  <%=f.hidden_field :inclusao, :value => user.id%>
+  <%=f.hidden_field :vk_empresa_id, :value => user.vk_empresa_id%>
+<%end%>
+
+  </div>
+</div>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="submit" class="btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+</button>
+
+<% end %>
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+       <h4 class="modal-title" id="myModalLabel">Buscar Produtos</h4>
+     </div>
+     <div class="modal-body">
+
+      <label >Nome Produto</label><br>
+       <div class="row">
+         <div class="col-lg-12">
+           <div class="input-group">
+             <input id="nome_produto_pesquisa" name="nome_produto_pesquisa" onkeyup="buscaProduto()" type="text" class="form-control" placeholder="Digite o nome do produto">
+             <span class="input-group-btn">
+               <button class="btn btn-success" type="button" onclick="buscaProduto();">Buscar</button>
+             </span>
+           </div><!-- /input-group -->
+         </div><!-- /.col-lg-6 -->
+       </div><!-- /.row -->
+       <br />
+
+      <table id="table_produto" name="table_produto" class="table table-hover">
+         <thead>
+           <tr>
+             <th>Produto</th>
+           </tr>
+         </thead>
+         <tbody id="tbodyid2">
+             <tr>
+             </tr>
+         </tbody>
+       </table>
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+     </div>
+   </div>
+ </div>
+</div>
+
+<script>
+
+jQuery(function($){
+
+  $("#vk_anuncio_data_inicio").mask("99/99/9999");
+  $("#vk_anuncio_data_fim").mask("99/99/9999");
+});
+
+
+function buscaProduto(){
+   $.ajax({
+     url: '<%= buscaProdutos_path %>',
+     data :
+     {
+         nome_produto : $('#nome_produto_pesquisa').val()
+     },
+     success: function(data){
+       $("#tbodyid2").empty();
+
+        for (var i in data) {
+          var item = data[i];
+          $('#table_produto').append('<tr><td><a href="javascript:setaProduto(\'' + item.nome_produto+'\','+item.id+');">'+item.nome_produto+'</a></td></tr>');
+        }
+     }
+   })
+}
+
+function setaProduto(nome,id){
+    $('#nome_produto').val(nome);
+    $('#vk_anuncio_vk_produtos_id').val(id);
+
+    $('#myModal1').modal('hide');
+}
+
+$(function() {
+ $("#vk_anuncio_valr_produto").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+ $("#vk_anuncio_valr_comdesconto").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+})
+
+  </script>

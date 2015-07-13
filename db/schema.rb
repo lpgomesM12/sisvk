@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529163012) do
+ActiveRecord::Schema.define(version: 20150709163852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,29 @@ ActiveRecord::Schema.define(version: 20150529163012) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["vk_empresa_id"], name: "index_users_on_vk_empresa_id", using: :btree
+
+  create_table "vk_anuncios", force: true do |t|
+    t.string   "desc_titulo"
+    t.string   "desc_anuncio"
+    t.decimal  "valr_produto"
+    t.decimal  "valr_comdesconto"
+    t.datetime "data_inicio"
+    t.datetime "data_fim"
+    t.integer  "numr_qtddisponivel"
+    t.boolean  "flag_ilimitado"
+    t.integer  "numr_visualizacao"
+    t.integer  "numr_click"
+    t.datetime "data_bloqueio"
+    t.integer  "vk_produtos_id"
+    t.integer  "vk_empresa_id"
+    t.integer  "user_inclusao"
+    t.integer  "integer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vk_anuncios", ["vk_empresa_id"], name: "index_vk_anuncios_on_vk_empresa_id", using: :btree
+  add_index "vk_anuncios", ["vk_produtos_id"], name: "index_vk_anuncios_on_vk_produtos_id", using: :btree
 
   create_table "vk_categoriaprodutos", force: true do |t|
     t.string   "nome_categoria"

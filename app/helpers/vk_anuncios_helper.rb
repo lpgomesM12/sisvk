@@ -1,0 +1,2 @@
+module VkAnunciosHelper
+end

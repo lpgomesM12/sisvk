@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc_titulo: MyString
+  desc_anuncio: MyString
+  valr_produto: 9.99
+  valr_comdesconto: 9.99
+  data_inicio: 2015-07-09 13:38:52
+  data_fim: 2015-07-09 13:38:52
+  numr_qtddisponivel: 1
+  flag_ilimitado: false
+  numr_visualizacao: 1
+  numr_click: 1
+  vk_produtos_id: 
+  vk_empresa_id: 
+  user_id: 
+
+two:
+  desc_titulo: MyString
+  desc_anuncio: MyString
+  valr_produto: 9.99
+  valr_comdesconto: 9.99
+  data_inicio: 2015-07-09 13:38:52
+  data_fim: 2015-07-09 13:38:52
+  numr_qtddisponivel: 1
+  flag_ilimitado: false
+  numr_visualizacao: 1
+  numr_click: 1
+  vk_produtos_id: 
+  vk_empresa_id: 
+  user_id: 
