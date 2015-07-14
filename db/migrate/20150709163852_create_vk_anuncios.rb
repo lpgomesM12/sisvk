@@ -12,7 +12,7 @@ class CreateVkAnuncios < ActiveRecord::Migration
       t.integer :numr_visualizacao
       t.integer :numr_click
       t.datetime :data_bloqueio
-      t.references :vk_produtos, index: true
+      t.references :vk_produto, index: true
       t.references :vk_empresa, index: true
       t.integer :user_inclusao, :integer, :references => :User, index: true
 

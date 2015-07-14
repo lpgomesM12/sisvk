@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150709163852) do
     t.integer  "numr_visualizacao"
     t.integer  "numr_click"
     t.datetime "data_bloqueio"
-    t.integer  "vk_produtos_id"
+    t.integer  "vk_produto_id"
     t.integer  "vk_empresa_id"
     t.integer  "user_inclusao"
     t.integer  "integer"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20150709163852) do
   end
 
   add_index "vk_anuncios", ["vk_empresa_id"], name: "index_vk_anuncios_on_vk_empresa_id", using: :btree
-  add_index "vk_anuncios", ["vk_produtos_id"], name: "index_vk_anuncios_on_vk_produtos_id", using: :btree
+  add_index "vk_anuncios", ["vk_produto_id"], name: "index_vk_anuncios_on_vk_produto_id", using: :btree
 
   create_table "vk_categoriaprodutos", force: true do |t|
     t.string   "nome_categoria"

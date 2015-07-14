@@ -42,6 +42,6 @@ class VkAnunciosController < ApplicationController
     end
 
     def vk_anuncio_params
-      params.require(:vk_anuncio).permit(:desc_titulo, :desc_anuncio, :valr_produto, :valr_comdesconto, :data_inicio, :data_fim, :numr_qtddisponivel, :flag_ilimitado, :numr_visualizacao, :numr_click, :vk_produtos_id, :vk_empresa_id, :user_id)
+      params.require(:vk_anuncio).permit(:desc_titulo, :desc_anuncio, :valr_produto, :valr_comdesconto, :data_inicio, :data_fim, :numr_qtddisponivel, :flag_ilimitado, :numr_visualizacao, :numr_click, :vk_produto_id, :vk_empresa_id, :user_id)
     end
 end
