@@ -6,11 +6,8 @@
   <thead>
     <tr>
       <th>Titulo</th>
-      <th>Anuncio</th>
       <th>Val. Produto</th>
       <th>Val Com Desconto</th>
-      <th>Data Inicio</th>
-      <th>Data Fim</th>
       <th></th>
     </tr>
   </thead>
@@ -19,16 +16,23 @@
     <% @vk_anuncios.each do |vk_anuncio| %>
       <tr>
         <td><%= vk_anuncio.desc_titulo %></td>
-        <td><%= vk_anuncio.desc_anuncio %></td>
         <td><%= vk_anuncio.valr_produto %></td>
         <td><%= vk_anuncio.valr_comdesconto %></td>
-        <td><%= vk_anuncio.data_inicio %></td>
-        <td><%= vk_anuncio.data_fim %></td>
         <td><%= vk_anuncio.numr_qtddisponivel %></td>
 
-        <td><%= link_to 'Show', vk_anuncio %></td>
-        <td><%= link_to 'Edit', edit_vk_anuncio_path(vk_anuncio) %></td>
-        <td><%= link_to 'Destroy', vk_anuncio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td align='right'>
+            <div class="btn-group">
+              <%= link_to vk_anuncio, :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-list-alt"></span> Exibir
+              <% end %>
+              <%= link_to edit_vk_anuncio_path(vk_anuncio), :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-pencil"></span> Editar
+              <% end %>
+              <%= link_to vk_anuncio, :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-trash"></span> Excluir
+              <% end %>
+            </div>
+        </td>
       </tr>
     <% end %>
   </tbody>

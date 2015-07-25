@@ -1,7 +1,7 @@
 class VkEmpresasController < ApplicationController
   before_action :set_vk_empresa, only: [:show, :edit, :update, :destroy]
-  
-  before_action :authenticate_user!
+
+  #before_action :authenticate_user!
 
 
   respond_to :html, :json
@@ -27,7 +27,7 @@ class VkEmpresasController < ApplicationController
 
   def create
     @vk_empresa = VkEmpresa.new(vk_empresa_params)
-    @vk_empresa.user_id = current_user.id
+    #@vk_empresa.user_id = current_user.id
     flash[:notice] = 'Cadastro realizado com sucesso' if @vk_empresa.save
     respond_with(@vk_empresa)
   end

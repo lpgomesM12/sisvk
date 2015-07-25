@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-3 col-md-3" style="height:400px;width:400px">
+    <div class="thumbnail" style="height:400px;width:380px;background-color:#fafafa">
+      <%for foto in  @vk_anuncio.vk_produto.vk_fotoproduto%>
+               <%= link_to image_tag(foto.image.url(:medium))%>
+               <%break%>
+      <%end%>
+    </div>
+  </div>
+  <div class="col-xs-9 col-md-3" style="height:400px;width:700px">
+    <div class="thumbnail" style="height:400px;width:700px;background-color:#fafafa"">
+       <h3><%=@vk_anuncio.desc_titulo%></h3>
+       <h6><%=@vk_anuncio.vk_produto.nome_produto%></h6>
+       <div class="caption">
+         <h6 style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(@vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></h6>
+         <h2 id="valor_produto", style="color: #0088cc; font-weight:bolder"><%= number_to_currency(@vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></h2>
+         <br/>
+         <hr>
+         <h4><a href="#" style="text-decoration: none"> <%= @vk_anuncio.vk_empresa.nome_empresa%></a></h4>
+          <h4><small>Endereço:</small></h4>
+          <h4><small>Rua: <%=@vk_anuncio.vk_empresa.vk_endereco.nome_rua%> Qd:<%=@vk_anuncio.vk_empresa.vk_endereco.desc_quadra%>  Lt:<%=@vk_anuncio.vk_empresa.vk_endereco.desc_lote%> </small></h4>
+          <h4><small><%=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado%></small></h4>
+       </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<%#= form_tag nil, method: 'GET' do %>
+<!--  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group">
+        <input id="q" name="q" type="text" class="form-control" placeholder="Nome">
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" ><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <br />-->
+<%# end %>
+
+<hr>
+
+<div class="row">
+<% @vk_anuncios.each do |vk_anuncio| %>
+  <div class="col-sm-5 col-md-3">
+    <div class="thumbnail" style="background-color:#fafafa">
+      <%for foto in  vk_anuncio.vk_produto.vk_fotoproduto%>
+               <%= link_to image_tag(foto.image.url(:thumb))%>
+               <%break%>
+      <%end%>
+      <div class="caption" style="height:100px">
+        <h4><a href="/anuncioshow/<%=vk_anuncio.id%>" style="text-decoration: none"><%= vk_anuncio.vk_produto.nome_produto %></h4>
+
+        <p><a href="/anuncioshow/<%=vk_anuncio.id%>" style="text-decoration: none"><%= vk_anuncio.desc_titulo %></p>
+      </div>
+      <h6 style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></h6>
+      <h3 id="valor_produto", style="color: #0088cc; font-weight:bolder"><%= number_to_currency(vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></h3>
+      <h5 ><a href="#" style="text-decoration: none"> <%= vk_anuncio.vk_empresa.nome_empresa%></h5>
+    </div>
+  </div>
+  <%end%>
+</div>
+
+<style media="screen">
+  a:hover {
+	color: #0088cc;
+	background-color:white ;
+ }
+</style>
+
+<script>
+
+</script>
+<%#=search_form_for @q, url: pesquisa_path, html: {}  do |f| %>
+<!--<div class="row">
+ <div class="col-lg-12">
+    <div class="input-group">
+
+      <%#= f.search_field  :desc_titulo_cont, :class => 'form-control', placeholder: 'Digite o nome do produto'%>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+           <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </span>
+    </div>
+  </div>
+</div>-->
+<%#end%>

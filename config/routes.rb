@@ -26,8 +26,9 @@ Rails.application.routes.draw do
   match '/buscaVitrines', to: 'vk_vitrines#buscaVitrines', via: 'get'
 
   get '/buscaPorVitrine/:vk_vitrine_id', to: 'site#index', as: 'buscaPorVitrine'
-  match '/buscaProdutos', to: 'vk_produtos#busca_produtos', via: 'get'
+  get '/anuncioshow/:id', to: 'site#show_anuncio', as: 'anuncioshow'
 
+  match '/buscaProdutos', to: 'vk_produtos#busca_produtos', via: 'get'
   match '/pesquisa', to: 'site#index', via: 'get'
 
 

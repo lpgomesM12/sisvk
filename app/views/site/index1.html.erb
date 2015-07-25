@@ -1,0 +1,53 @@
+<%= form_tag nil, method: 'GET' do %>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group">
+        <input id="q" name="q" type="text" class="form-control" placeholder="Nome">
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" ><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div><!-- /.row -->
+  <br />  
+<% end %>
+
+<hr>
+
+<ul class="list-group">
+   <% @vk_produtos.each do |vk_produto| %>
+<li class="list-group-item">
+  <div class="row">
+     <div class="col-lg-2">
+    <%for foto in vk_produto.vk_fotoproduto%>
+             <%= link_to image_tag(foto.image.url(:thumb))%>
+             <%break%>
+    <%end%>
+    </div>
+    <div class="col-lg-8">
+      <%= vk_produto.desc_titulo %>
+     </div>
+      <div class="col-lg-2">
+       <%= vk_produto.valr_produto %>
+     </div>
+  </div>
+</li>
+  <%end%>
+</ul>
+
+
+<%#=search_form_for @q, url: pesquisa_path, html: {}  do |f| %>
+<!--<div class="row">
+ <div class="col-lg-12">
+    <div class="input-group">
+
+      <%#= f.search_field  :desc_titulo_cont, :class => 'form-control', placeholder: 'Digite o nome do produto'%>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+           <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </span>
+    </div>
+  </div>
+</div>-->
+<%#end%>

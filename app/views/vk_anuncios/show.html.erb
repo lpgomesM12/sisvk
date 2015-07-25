@@ -1,22 +1,33 @@
-<p id="notice"><%= notice %></p>
+<%if notice %>
+  <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+     <%= notice %>
+</div>
+<%end%>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Exibir Anuncio</h3>
+  </div>
+  <div class="panel-footer" style="background-color:white;">
 
 <p>
-  <strong>Desc titulo:</strong>
+  <strong>Titulo Anuncio:</strong>
   <%= @vk_anuncio.desc_titulo %>
 </p>
 
 <p>
-  <strong>Desc anuncio:</strong>
+  <strong>Descrição Anuncio:</strong>
   <%= @vk_anuncio.desc_anuncio %>
 </p>
 
 <p>
-  <strong>Valr produto:</strong>
+  <strong>Valor Produto:</strong>
   <%= @vk_anuncio.valr_produto %>
 </p>
 
 <p>
-  <strong>Valr comdesconto:</strong>
+  <strong>Valor Com Desconto:</strong>
   <%= @vk_anuncio.valr_comdesconto %>
 </p>
 
@@ -31,39 +42,42 @@
 </p>
 
 <p>
-  <strong>Numr qtddisponivel:</strong>
+  <strong>Qtd. Disponivel:</strong>
   <%= @vk_anuncio.numr_qtddisponivel %>
 </p>
 
 <p>
-  <strong>Flag ilimitado:</strong>
-  <%= @vk_anuncio.flag_ilimitado %>
-</p>
-
-<p>
-  <strong>Numr visualizacao:</strong>
-  <%= @vk_anuncio.numr_visualizacao %>
-</p>
-
-<p>
-  <strong>Numr click:</strong>
-  <%= @vk_anuncio.numr_click %>
+  <strong>Ilimitado:</strong>
+  <% if @vk_anuncio.flag_ilimitado %>
+    Sim
+  <%else%>
+    Não
+  <%end%>
 </p>
 
 <p>
   <strong>Vk produtos:</strong>
-  <%= @vk_anuncio.vk_produto %>
+  <%= @vk_anuncio.vk_produto.nome_produto %>
 </p>
+<hr>
+<div class="row mar-bot40">
+  <ul>
+    <%for fotoproduto in @vk_anuncio.vk_produto.vk_fotoproduto %>
+    <div class="col-lg-4" >
+      <li><%= link_to image_tag(fotoproduto.image.url(:thumb  ))%></li>
+    </div>
+    <%end%>
+  </ul>
+</div>
 
-<p>
-  <strong>Vk empresa:</strong>
-  <%= @vk_anuncio.vk_empresa %>
-</p>
+</div>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @vk_anuncio.user %>
-</p>
-
-<%= link_to 'Edit', edit_vk_anuncio_path(@vk_anuncio) %> |
-<%= link_to 'Back', vk_anuncios_path %>
+<div class="btn-group">
+<%= link_to edit_vk_anuncio_path(@vk_anuncio), :class => "btn btn-default btn-sm" do %>
+  <span class="glyphicon glyphicon-pencil"></span> Editar
+<% end %>
+<%= link_to vk_anuncios_path, :class => "btn btn-default btn-sm" do %>
+  <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+<% end %>
+</div>

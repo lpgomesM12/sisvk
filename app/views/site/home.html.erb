@@ -1,8 +1,8 @@
 <div class="row mar-bot40">
-	<div class="col-lg-4" >
-	</div>
-	 <div class="col-lg-6" >
-		<div class="btn-group-vertical" role="group">
+	 <div class="col-lg-4">
+	 </div>
+	 <div class="col-lg-6">
+		<div id="vitrines" class="btn-group-vertical" role="group">
 		</div>
 	 </div>
 </div>
@@ -18,13 +18,13 @@
     },
     success: function(data){
 
-    $("div.btn-group-vertical").html("");
+    $("#vitrines").html("");
       for (var i in data) {
         var item = data[i];
 
-        $("div.btn-group-vertical").append("<a href='buscaPorVitrine/"+item.id+"' class='btn btn-default btn-lg' role='button'>"+ item.nome_vitrine + "</a>");
+        $("#vitrines").append("<a href='buscaPorVitrine/"+item.id+"' class='btn btn-default btn-lg' role='button'>"+ item.nome_vitrine + "</a>");
       };
-        $("div.btn-group-vertical").append("<button type='button'  class='btn btn-primary btn-lg'>Voltar</button>");
+
     }
   })
 }

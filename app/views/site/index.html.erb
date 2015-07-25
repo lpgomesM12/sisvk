@@ -1,53 +1,47 @@
-<%= form_tag nil, method: 'GET' do %>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="input-group">
-        <input id="q" name="q" type="text" class="form-control" placeholder="Nome">
-        <span class="input-group-btn">
-          <button class="btn btn-success" type="submit" ><span class="glyphicon glyphicon-search"></span></button>
-        </span>
-      </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-  </div><!-- /.row -->
-  <br />  
-<% end %>
+<%= stylesheet_link_tag    "Listasite" %>
 
-<hr>
+<div class="container-fluid">
+    <div class="container container-pad" id="property-listings">
 
-<ul class="list-group">
-   <% @vk_produtos.each do |vk_produto| %>
-<li class="list-group-item">
-  <div class="row">
-     <div class="col-lg-2">
-    <%for foto in vk_produto.vk_fotoproduto%>
-             <%= link_to image_tag(foto.image.url(:thumb))%>
-             <%break%>
-    <%end%>
-    </div>
-    <div class="col-lg-8">
-      <%= vk_produto.desc_titulo %>
-     </div>
-      <div class="col-lg-2">
-       <%= vk_produto.valr_produto %>
-     </div>
-  </div>
-</li>
-  <%end%>
-</ul>
+        <div class="row">
+          <div class="col-md-12">
+            <!--Aqui posso colocar um titulo-->
 
+          </div>
+        </div>
+        <div class="row">
+        <% @vk_anuncios.each do |vk_anuncio| %>
+            <div class="col-sm-12">
+                <!-- Begin Listing: 609 W GRAVERS LN-->
+                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                    <div class="media">
+                        <a class="pull-left" href="#" target="_parent">
+                        <img alt="image" class="img-responsive" src="    <%for foto in  vk_anuncio.vk_produto.vk_fotoproduto%><%= foto.image.url(:thumb)%><%break%><%end%>">
+                       </a>
+                        <div class="clearfix visible-sm"></div>
+                        <div class="media-body fnt-smaller">
+                            <a href="#" target="_parent"><p style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></p></a>
+                            <h3 class="media-heading">
+                              <a href="#" target="_parent" style="color: #0088cc; font-weight:bolder"><%= number_to_currency(vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %><small class="pull-right"><%= vk_anuncio.vk_empresa.nome_empresa%></small></a></h3>
+                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                              <!--  <li>4,820 SqFt</li>
+                                <li style="list-style: none">|</li>
+                                <li>5 Beds</li>
+                                <li style="list-style: none">|</li>
+                                <li>5 Baths</li> -->
+                            </ul>
+                            <p class="hidden-xs"><a href="/anuncioshow/<%=vk_anuncio.id%>"><%=vk_anuncio.desc_titulo %></p>
+                            <span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
+                            Evergreen</span>
+                        </div>
+                    </div>
+                </div><!-- End Listing-->
+                </div><!-- End Listing-->
+            <%end%>
+            </div><!-- End Col -->
+        </div><!-- End row -->
+    </div><!-- End container -->
+</div>
 
-<%#=search_form_for @q, url: pesquisa_path, html: {}  do |f| %>
-<!--<div class="row">
- <div class="col-lg-12">
-    <div class="input-group">
-
-      <%#= f.search_field  :desc_titulo_cont, :class => 'form-control', placeholder: 'Digite o nome do produto'%>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">
-           <span class="glyphicon glyphicon-search"></span>
-        </button>
-      </span>
-    </div>
-  </div>
-</div>-->
-<%#end%>
+<style media="screen">
+</style>
