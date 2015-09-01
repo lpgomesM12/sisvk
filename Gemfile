@@ -9,8 +9,7 @@ gem 'devise'
 gem "paperclip", "~> 4.2"
 gem 'ransack'
 
-gem 'pg'  
-#gem 'pg', '~> 0.17.1'
+gem 'pg'
 
 group :development, :test do
   #gem 'rspec-rails', '2.13.1'
