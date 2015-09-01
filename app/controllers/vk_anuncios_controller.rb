@@ -14,6 +14,8 @@ class VkAnunciosController < ApplicationController
 
   def new
     @vk_anuncio = VkAnuncio.new
+    @vk_produto = VkProduto.new
+    2.times{@vk_produto.vk_fotoproduto.build}
     respond_with(@vk_anuncio)
   end
 

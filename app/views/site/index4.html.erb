@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag    "Listasite" %>
+<div class="container-fluid">
+    <div class="container container-pad" id="property-listings">
+        <div class="row">
+          <div class="col-md-12">
+            <!--Aqui posso colocar um titulo-->
+          </div>
+        </div>
+        <div class="row">
+        <% @vk_anuncios.each do |vk_anuncio| %>
+            <div class="col-sm-12">
+                <!-- Begin Listing: 609 W GRAVERS LN-->
+                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                    <div class="media">
+                        <a class="pull-left" href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent">
+                        <img alt="image" class="img-responsive" src="<%for foto in  vk_anuncio.vk_produto.vk_fotoproduto%><%= foto.image.url(:thumb)%><%break%><%end%>">
+                       </a>
+                        <div class="clearfix visible-sm"></div>
+                        <div class="media-body fnt-smaller">
+                            <p class="hidden-xs"><a href="/anuncioshow/<%=vk_anuncio.id%>"><%=vk_anuncio.desc_titulo %></p>
+                            <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent"><p style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></p></a>
+                            <h3 class="media-heading">
+                              <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent" style="color: #0088cc; font-weight:bolder"><%= number_to_currency(vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a><a href="/showempresa/<%=vk_anuncio.vk_empresa_id%>"><small class="pull-right"><%= vk_anuncio.vk_empresa.nome_empresa%></small></a></h3>
+                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                              <!--  <li>4,820 SqFt</li>
+                                <li style="list-style: none">|</li>
+                                <li>5 Beds</li>
+                                <li style="list-style: none">|</li>
+                                <li>5 Baths</li> -->
+                            </ul>
+                            <span class="fnt-smaller fnt-lighter fnt-arial">Rua: <%=vk_anuncio.vk_empresa.vk_endereco.nome_rua%> Qd:<%=vk_anuncio.vk_empresa.vk_endereco.desc_quadra%>  Lt:<%=vk_anuncio.vk_empresa.vk_endereco.desc_lote%> Setor:<%=vk_anuncio.vk_empresa.vk_endereco.nome_bairro%>  <%=vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%=vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado%></span>
+                        </div>
+                    </div>
+                </div><!-- End Listing-->
+                </div><!-- End Listing-->
+            <%end%>
+            </div><!-- End Col -->
+        </div><!-- End row -->
+    </div><!-- End container -->
+</div>

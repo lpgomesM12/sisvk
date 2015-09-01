@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :vk_enderecoempresas
+
+  resources :vk_anunciofavoritos
+
   resources :vk_anuncios
 
   resources :vk_empresavitrines
@@ -21,16 +25,22 @@ Rails.application.routes.draw do
 
   root  'site#home'
 
-
   match '/listarCidade', to: 'vk_cidades#get_cities', via: 'get'
   match '/buscaVitrines', to: 'vk_vitrines#buscaVitrines', via: 'get'
 
   get '/buscaPorVitrine/:vk_vitrine_id', to: 'site#index', as: 'buscaPorVitrine'
   get '/anuncioshow/:id', to: 'site#show_anuncio', as: 'anuncioshow'
+  get '/pagina/:id', to: 'site#show_empresa', as: 'loja'
 
   match '/buscaProdutos', to: 'vk_produtos#busca_produtos', via: 'get'
   match '/pesquisa', to: 'site#index', via: 'get'
 
+  match '/salvarFavorito', to: 'vk_anunciofavoritos#salvar', via: 'get'
+
+  match '/salvaEndereco', to: 'vk_empresas#salva_endereco', via: 'get'
+
+  match '/salvaEndereco', to: 'vk_empresas#salva_endereco', via: 'get'
+  match '/excluiEndereco', to: 'vk_empresas#exclui_endereco', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

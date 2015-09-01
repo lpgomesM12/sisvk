@@ -8,9 +8,13 @@
          <% end %>
         <% end %>
       </div>
-
   <% end %>
-
+<% if(!@vk_anuncio.id)%>
+  <div class="alert alert-info alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+   Se o produto não tiver cadastrado você deverá cadastra-lo clicando na aba ao lado.
+ </div>
+<% end %>
 <div class="row mar-bot40">
     <div class="col-lg-12">
       <%= f.label :Produto %><br />
@@ -23,8 +27,7 @@
          </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
   </div><!-- /.row -->
-  <br />
-
+<br/>
 <div class="row mar-bot40">
     <div class="col-lg-12" >
       <%= f.label :Titulo %><br>
@@ -51,11 +54,11 @@
     </div>
     <div class="col-lg-2" >
       <%= f.label :data_inicio %><br>
-      <%= f.text_field :data_inicio, :class => 'form-control' %>
+      <%= f.text_field :data_inicio, :value => (@vk_anuncio.data_inicio.blank? ? '' : @vk_anuncio.data_inicio.strftime("%d/%m/%Y")), :class => 'form-control' %>
     </div>
     <div class="col-lg-2" >
       <%= f.label :data_fim %><br>
-      <%= f.text_field :data_fim, :class => 'form-control' %>
+      <%= f.text_field :data_fim, :value => (@vk_anuncio.data_fim.blank? ? '' : @vk_anuncio.data_fim.strftime("%d/%m/%Y")), :class => 'form-control' %>
     </div>
     <div class="col-lg-2" >
       <%= f.label :Qtd_Disponivel %><br>
@@ -69,8 +72,8 @@
 <br>
 <%if user_signed_in?%>
   <!--Capturando usuario logado-->
-  <%=f.hidden_field :inclusao, :value => user.id%>
-  <%=f.hidden_field :vk_empresa_id, :value => user.vk_empresa_id%>
+  <%=f.hidden_field :inclusao, :value => current_user.id%>
+  <%=f.hidden_field :vk_empresa_id, :value => current_user.vk_empresa_id%>
 <%end%>
 
   </div>

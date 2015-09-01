@@ -1,0 +1,29 @@
+<h1>Listing vk_anunciofavoritos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vk anuncio</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vk_anunciofavoritos.each do |vk_anunciofavorito| %>
+      <tr>
+        <td><%= vk_anunciofavorito.vk_anuncio %></td>
+        <td><%= vk_anunciofavorito.user %></td>
+        <td><%= link_to 'Show', vk_anunciofavorito %></td>
+        <td><%= link_to 'Edit', edit_vk_anunciofavorito_path(vk_anunciofavorito) %></td>
+        <td><%= link_to 'Destroy', vk_anunciofavorito, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vk anunciofavorito', new_vk_anunciofavorito_path %>

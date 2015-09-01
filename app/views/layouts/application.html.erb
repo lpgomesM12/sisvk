@@ -4,22 +4,19 @@
   <title>VK</title>
 
   <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "rodape" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/menu' %>
 
 </head>
-<body style="background-color:#efefef">
-  <div class="container">
+<body style="background-color:#f9f9f9">
+  <div class="container" id="wrap" style="margin-top:55px">
       <%= yield %>
+  <div id="main" class="container clear-top">
+ </div>
   </div>
 </body>
+
+<%= render 'layouts/footer' %>
 </html>
-
-
-<style media="screen">
-  a:hover {
-	color: #0088cc;
-	background-color:white ;
- }
-</style>

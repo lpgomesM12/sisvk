@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709163852) do
+ActiveRecord::Schema.define(version: 20150818201555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20150709163852) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["vk_empresa_id"], name: "index_users_on_vk_empresa_id", using: :btree
+
+  create_table "vk_anunciofavoritos", force: true do |t|
+    t.integer  "vk_anuncio_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vk_anunciofavoritos", ["user_id"], name: "index_vk_anunciofavoritos_on_user_id", using: :btree
+  add_index "vk_anunciofavoritos", ["vk_anuncio_id"], name: "index_vk_anunciofavoritos_on_vk_anuncio_id", using: :btree
 
   create_table "vk_anuncios", force: true do |t|
     t.string   "desc_titulo"
@@ -99,6 +109,16 @@ ActiveRecord::Schema.define(version: 20150709163852) do
 
   add_index "vk_empresavitrines", ["vk_empresa_id"], name: "index_vk_empresavitrines_on_vk_empresa_id", using: :btree
   add_index "vk_empresavitrines", ["vk_vitrine_id"], name: "index_vk_empresavitrines_on_vk_vitrine_id", using: :btree
+
+  create_table "vk_enderecoempresas", force: true do |t|
+    t.integer  "vk_empresa_id"
+    t.integer  "vk_endereco_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vk_enderecoempresas", ["vk_empresa_id"], name: "index_vk_enderecoempresas_on_vk_empresa_id", using: :btree
+  add_index "vk_enderecoempresas", ["vk_endereco_id"], name: "index_vk_enderecoempresas_on_vk_endereco_id", using: :btree
 
   create_table "vk_enderecos", force: true do |t|
     t.string   "nome_bairro"

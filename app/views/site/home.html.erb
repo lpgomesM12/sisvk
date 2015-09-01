@@ -1,15 +1,25 @@
+<hr>
 <div class="row mar-bot40">
-	 <div class="col-lg-4">
-	 </div>
-	 <div class="col-lg-6">
-		<div id="vitrines" class="btn-group-vertical" role="group">
-		</div>
-	 </div>
+<div class="col-lg-4">
+	<a href="/buscaPorVitrine/1"> <span style="font-size:100px" class="glyphicon glyphicon-shopping-cart"></span></a>
+	<span><h4>Supermercados...</h4></span>
+ </div>
 </div>
+<hr>
+
+<div class="jumbotron" style="background-color:#ebeff7">
+	<div class="row mar-bot40">
+		 <div class="col-lg-12">
+			 <h4>Quer encontrar as melhores promoções dos supermercados de sua cidade? então OlheK!</h4>
+	     <hr>
+			 <h5>Por enquanto estamos somente na cidade de Goiânia.</h5>
+		 </div>
+	</div>
+</div>
+
 
 <script>
  function buscaVitrines(father_id) {
-
   $.ajax({
     url: '<%= buscaVitrines_path %>',
     data :
@@ -17,21 +27,50 @@
         father_id : father_id
     },
     success: function(data){
-
     $("#vitrines").html("");
-      for (var i in data) {
+		$("#vitrines").append("<a class='btn btn-primary btn-lg' role='button'>" +"Vitrines"+ "</a>");
+	  for (var i in data) {
         var item = data[i];
 
         $("#vitrines").append("<a href='buscaPorVitrine/"+item.id+"' class='btn btn-default btn-lg' role='button'>"+ item.nome_vitrine + "</a>");
       };
-
     }
   })
 }
 
-
-
-buscaVitrines();
+buscaVitrines()
 
 
 </script>
+
+
+<style media="screen">
+.btn-sq-lg {
+width: 150px !important;
+height: 150px !important;
+}
+
+.btn-sq {
+width: 100px !important;
+height: 100px !important;
+font-size: 10px;
+}
+
+.btn-sq-sm {
+width: 50px !important;
+height: 50px !important;
+font-size: 10px;
+}
+
+.btn-sq-xs {
+width: 25px !important;
+height: 25px !important;
+padding:2px;
+}
+
+  a:hover {
+	color: #3a5795;
+	background-color:white ;
+ }
+
+</style>

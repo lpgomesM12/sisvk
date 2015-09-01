@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vk anuncio:</strong>
+  <%= @vk_anunciofavorito.vk_anuncio %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @vk_anunciofavorito.user %>
+</p>
+
+<%= link_to 'Edit', edit_vk_anunciofavorito_path(@vk_anunciofavorito) %> |
+<%= link_to 'Back', vk_anunciofavoritos_path %>

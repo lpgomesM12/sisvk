@@ -1,8 +1,6 @@
 class VkProdutosController < ApplicationController
   before_action :set_vk_produto, only: [:show, :edit, :update, :destroy]
-
   respond_to :html
-
 
   def busca_produtos
     vk_produto = VkProduto.where('lower(nome_produto) like ?', "%#{params[:nome_produto].downcase}%")
@@ -32,7 +30,8 @@ class VkProdutosController < ApplicationController
   def create
     @vk_produto = VkProduto.new(vk_produto_params)
     @vk_produto.save
-    redirect_to vk_produtos_path
+    #redirect_to vk_anuncios/new
+    redirect_to :controller => 'vk_anuncios', :action => 'new'
   end
 
   def update
