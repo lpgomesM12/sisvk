@@ -188,7 +188,7 @@ DEPENDENCIES
   execjs
   jquery-rails (= 3.0.4)
   paperclip (~> 4.2)
-  pg (~> 0.18.2)
+  pg
   rails (= 4.0.1)
   rails3_serve_static_assets!
   rails_12factor (= 0.0.2)
