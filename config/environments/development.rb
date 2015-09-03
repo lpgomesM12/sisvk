@@ -1,7 +1,7 @@
 Sisvk::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Devise 
+  # Devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # In the development environment your application's code is reloaded on
@@ -33,5 +33,5 @@ Sisvk::Application.configure do
   #Configurações de local
  # config.i18n.default_locale = "pt-BR"
   config.time_zone = 'Brasilia'
-  config.encoding = "utf-8" 
+  config.encoding = "utf-8"
 end
