@@ -4,16 +4,8 @@ development:
   pool: 5
   timeout: 5000
   username: postgres
-  password: sivic 
+  password: sivic
 test:
-  adapter: postgresql
-  database: sisvk_development
-  pool: 5
-  timeout: 5000
-  username: postgres
-  password: sivic 
-
-production:
   adapter: postgresql
   database: sisvk_development
   pool: 5

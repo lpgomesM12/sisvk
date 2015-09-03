@@ -98,7 +98,7 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pdf-core (0.4.0)
-    pg (0.18.2-x86-mingw32)
+    pg (0.17.1-x86-mingw32)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
     polyglot (0.3.5)
@@ -188,7 +188,7 @@ DEPENDENCIES
   execjs
   jquery-rails (= 3.0.4)
   paperclip (~> 4.2)
-  pg
+  pg (~> 0.17.1)
   rails (= 4.0.1)
   rails3_serve_static_assets!
   rails_12factor (= 0.0.2)
