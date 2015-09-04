@@ -84,6 +84,7 @@ Sisvk::Application.configure do
   # config.assets.precompile += %w( search.js )
   config.assets.paths << Rails.root.join("app","assets","fonts","audio")
 
+
   #set perpeclip opload  imeans to amazon s3
   config.paperclip_defaults = {
     :storage => :s3,
@@ -92,5 +93,6 @@ Sisvk::Application.configure do
       :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
+  }
 
 end
