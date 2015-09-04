@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   get '/buscaPorVitrine/:vk_vitrine_id', to: 'site#index', as: 'buscaPorVitrine'
   get '/anuncioshow/:id', to: 'site#show_anuncio', as: 'anuncioshow'
-  get '/pagina/:id', to: 'site#show_empresa', as: 'loja'
+  get '/:id', to: 'site#show_empresa', as: 'loja'
 
   match '/buscaProdutos', to: 'vk_produtos#busca_produtos', via: 'get'
   match '/pesquisa', to: 'site#index', via: 'get'
