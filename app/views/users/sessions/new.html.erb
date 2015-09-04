@@ -1,32 +1,46 @@
-<h2>Entrar</h2>
+<div class = "row">
+  <div class="col-lg-4">
+  </div>
+  <div class="col-lg-4">
+    <h3>Entrar</h3>
+ </div>
+</div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class = "row">
-  <div class="col-xs-3">
+  <div class="col-lg-4">
+  </div>
+  <div class="col-lg-4">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
   </div>
 </div>
 <br>
 <div class = "row">
-  <div class="col-xs-3">
+  <div class="col-lg-4">
+  </div>
+  <div class="col-lg-4">
     <%= f.label :Senha %><br />
     <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
   </div>
 </div>
 
+<div class = "row">
+  <div class="col-lg-4">
+  </div>
+  <div class="col-lg-4">
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>
       <%= f.label :Lembrar %>
     </div>
   <% end -%>
-
   <button type="submit" class="btn btn-primary btn-sm">
        Entrar
   </button>
 
+ <% end %>
 
-<% end %>
-
-<%= render "users/shared/links" %>
+  <%= render "users/shared/links" %>
+ </div>
+</div>
