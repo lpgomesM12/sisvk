@@ -86,6 +86,10 @@
   </div>
 </div>
 
+<%= f.hidden_field :user_inclusao, :value => current_user.id %>
+<%= f.hidden_field :vk_empresa_id, :value => current_user.vk_empresa_id %>
+
+
 
 <div class="btn-group" role="group" aria-label="...">
   <button type="submit" class="btn btn-primary btn-sm">

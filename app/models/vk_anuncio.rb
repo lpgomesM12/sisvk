@@ -37,4 +37,9 @@ class VkAnuncio < ActiveRecord::Base
       self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ? and data_inicio <= ? and data_fim  >= ?',vitrine,data,data)
   end
 
+  def self.busca_por_empresa(query)
+    query = query.downcase
+      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id').where('lower(ve.nome_pagina) = ?',"#{query}")
+  end
+
 end

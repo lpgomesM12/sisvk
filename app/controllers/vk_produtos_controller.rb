@@ -2,6 +2,8 @@ class VkProdutosController < ApplicationController
   before_action :set_vk_produto, only: [:show, :edit, :update, :destroy]
   respond_to :html
 
+ before_action :authenticate_user!
+
   def busca_produtos
     vk_produto = VkProduto.where('lower(nome_produto) like ?', "%#{params[:nome_produto].downcase}%")
     vk_produto_json = vk_produto.map { |item| {:id => item.id, :nome_produto => item.nome_produto} }
@@ -50,6 +52,6 @@ class VkProdutosController < ApplicationController
     end
 
     def vk_produto_params
-      params.require(:vk_produto).permit(:nome_produto, :desc_produto, :valr_produto, :desc_titulo, :flag_atacado, :flag_varejo, :flag_novo, :flag_anunciado, :vk_categoriaproduto_id, :vk_empresa_id, vk_fotoproduto_attributes: [:image])
+      params.require(:vk_produto).permit(:nome_produto, :desc_produto, :valr_produto, :desc_titulo, :flag_atacado, :flag_varejo, :flag_novo, :flag_anunciado, :vk_categoriaproduto_id, :vk_empresa_id, :user_inclusao, vk_fotoproduto_attributes: [:image])
     end
 end

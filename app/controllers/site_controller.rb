@@ -38,7 +38,7 @@ include ActionView::Helpers::NumberHelper
  end
 
  def show_empresa
-   @vk_anuncios = VkAnuncio.where(vk_empresa_id: params[:id])
+    @vk_anuncios = VkAnuncio.busca_por_empresa(params[:id])
  end
 
  #if params[:q] && !params[:vk_vitrine_id]

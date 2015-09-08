@@ -1,9 +1,7 @@
+#encoding: utf-8
 class VkEmpresasController < ApplicationController
   before_action :set_vk_empresa, only: [:show, :edit, :update, :destroy]
-
   before_action :authenticate_user!
-
-
   respond_to :html, :json
 
 
@@ -79,15 +77,21 @@ class VkEmpresasController < ApplicationController
 
   def create
     @vk_empresa = VkEmpresa.new(vk_empresa_params)
-
-  if @vk_empresa.save
-      flash[:notice] = 'Cadastro realizado com sucesso'
-        @vk_enderecoEmpresa = VkEnderecoempresa.where(vk_empresa_id: @vk_empresa.id)
-        redirect_to edit_vk_empresa_path(@vk_empresa)
-      else
-      respond_with(@vk_empresa)
-    end
+         if @vk_empresa.save
+            atualiza_usuario(@vk_empresa.id)
+            flash[:notice] = 'Cadastro realizado com sucesso'
+               @vk_enderecoEmpresa = VkEnderecoempresa.where(vk_empresa_id: @vk_empresa.id)
+              redirect_to edit_vk_empresa_path(@vk_empresa)
+            else
+         respond_with(@vk_empresa)
+      end
   end
+
+def atualiza_usuario(empresa_id)
+   @user = User.find(current_user.id)
+   @user.vk_empresa_id = empresa_id
+   @user.save
+end
 
   def update
     @vk_empresa.update(vk_empresa_params)

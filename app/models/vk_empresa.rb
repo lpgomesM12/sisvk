@@ -1,12 +1,15 @@
+#encoding: utf-8
 class VkEmpresa < ActiveRecord::Base
   belongs_to :vk_endereco
 
   accepts_nested_attributes_for :vk_endereco, allow_destroy: true
 
-  validates :nome_pagina, :presence => { :message => 'Digite o nome da pagina' }
+ validates :nome_pagina, :presence => { :message => 'Digite o nome da pagina' }
+ validate :valida_nome_pagina
 
-  after_create  :verifica_empresa_usuario
-  before_create :captura_id
+  def valida_nome_pagina
+		errors.add(:nome_pagina, "O nome da pagina não pode conter espaços em branco") if self.nome_pagina.to_s.include? " "
+	end
 
 def captura_id
  @@idUsuario = self.user_id
@@ -25,6 +28,5 @@ def verifica_empresa_usuario
   	@user.vk_empresa_id = self.id
   	@user.save
 end
-
 
 end
