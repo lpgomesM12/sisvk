@@ -80,12 +80,7 @@ class VkEmpresasController < ApplicationController
   def create
     @vk_empresa = VkEmpresa.new(vk_empresa_params)
 
-  if @vk_empresa.nome_pagina.include? " "
-      flash[:notice] = 'Cadastro realizado com sucesso'
-     respond_with(@vk_empresa)
-  end
-
-    if @vk_empresa.save
+  if @vk_empresa.save
       flash[:notice] = 'Cadastro realizado com sucesso'
         @vk_enderecoEmpresa = VkEnderecoempresa.where(vk_empresa_id: @vk_empresa.id)
         redirect_to edit_vk_empresa_path(@vk_empresa)
@@ -110,6 +105,6 @@ class VkEmpresasController < ApplicationController
     end
 
     def vk_empresa_params
-      params.require(:vk_empresa).permit(:nome_empresa, :cnpj_empresa, :nome_responsavel, :desc_telefone, :resu_atividade, vk_endereco_attributes: [ :id, :nome_bairro , :nome_rua, :desc_quadra, :desc_lote, :desc_complemento, :desc_cep, :vk_cidade_id])
+      params.require(:vk_empresa).permit(:nome_pagina, :nome_empresa, :cnpj_empresa, :nome_responsavel, :desc_telefone, :resu_atividade, vk_endereco_attributes: [ :id, :nome_bairro , :nome_rua, :desc_quadra, :desc_lote, :desc_complemento, :desc_cep, :vk_cidade_id])
     end
 end
