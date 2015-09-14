@@ -18,6 +18,7 @@ class VkAnuncio < ActiveRecord::Base
     if query
       query = query.downcase
      self.where('lower(desc_titulo)like ?',"%#{query}%")
+
     else
      self.all
     end
@@ -34,7 +35,7 @@ class VkAnuncio < ActiveRecord::Base
 
  def self.busca_por_vitrine(vitrine)
        data = Time.now
-      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ? and data_inicio <= ? and data_fim  >= ?',vitrine,data,data)
+      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ? and data_inicio <= ? and data_fim  >= ?',vitrine,data,data).paginate(:page => params[:page], :per_page => 10)
   end
 
   def self.busca_por_empresa(query)

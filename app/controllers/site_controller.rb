@@ -6,7 +6,9 @@ include ActionView::Helpers::NumberHelper
    if params[:q] && !params[:vk_vitrine_id]
    @vk_anuncios = VkAnuncio.find_by_nome_anuncio_or_all(params[:q])
    elsif params[:vk_vitrine_id] && !params[:q]
-      @vk_anuncios = VkAnuncio.busca_por_vitrine(params[:vk_vitrine_id])
+
+    @vk_anuncios = busca_por_vitrine(params[:vk_vitrine_id])
+
    elsif params[:vk_vitrine_id] && params[:q]
     @vk_anuncios = VkAnuncio.busca_nome_vitrine(params[:q],params[:vk_vitrine_id])
    end
@@ -28,6 +30,11 @@ include ActionView::Helpers::NumberHelper
   end
 
  end
+
+def busca_por_vitrine(vitrine)
+       data = Time.now
+       VkAnuncio.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ? and data_inicio <= ? and data_fim  >= ?',vitrine,data,data).paginate(:page => params[:page], :per_page => 50)
+end
 
  def show_anuncio
   @vk_anuncio = VkAnuncio.find(params[:id])

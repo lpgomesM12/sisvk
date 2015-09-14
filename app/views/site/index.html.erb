@@ -14,6 +14,7 @@
 
         </div>
     </div>-->
+
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
         <div class="btn-group" role="group">
             <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
@@ -77,13 +78,27 @@
                                           <li style="list-style: none">|</li>
                                           <li>5 Baths</li> -->
                                       </ul>
-                                      <span class="fnt-smaller fnt-lighter fnt-arial">Rua: <%=vk_anuncio.vk_empresa.vk_endereco.nome_rua%> Qd:<%=vk_anuncio.vk_empresa.vk_endereco.desc_quadra%>  Lt:<%=vk_anuncio.vk_empresa.vk_endereco.desc_lote%> Setor:<%=vk_anuncio.vk_empresa.vk_endereco.nome_bairro%>  <%=vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%=vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado%></span>
+                                      <!--<span class="fnt-smaller fnt-lighter fnt-arial">Rua: <%=vk_anuncio.vk_empresa.vk_endereco.nome_rua rescue nil%> Qd:<%=vk_anuncio.vk_empresa.vk_endereco.desc_quadra rescue nil%>  Lt:<%=vk_anuncio.vk_empresa.vk_endereco.desc_lote rescue nil%> Setor:<%=vk_anuncio.vk_empresa.vk_endereco.nome_bairro rescue nil%>  <%#=vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%=vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado rescue nil%></span>-->
+                                      <a href="#"><span class="fnt-smaller fnt-lighter fnt-arial">Endereço Lojas</span></a>
                                   </div>
                               </div>
                           </div><!-- End Listing-->
                           </div><!-- End Listing-->
                       <%end%>
                       </div><!-- End Col -->
+
+                     <div class="row">
+                      <div class="col-lg-5">
+                      </div>
+                      <div class="col-lg-5">
+                        <nav>
+                          <ul class="pagination">
+                            <%= will_paginate @vk_anuncios , :inner_window => 2%>
+                          </ul>
+                        </nav>
+                      </div>
+                     </div>
+
                   </div><!-- End row -->
               </div><!-- End container -->
         </div>
@@ -139,7 +154,7 @@
                                           <li style="list-style: none">|</li>
                                           <li>5 Baths</li> -->
                                       </ul>
-                                      <span class="fnt-smaller fnt-lighter fnt-arial">Rua: <%=favorito.vk_anuncio.vk_empresa.vk_endereco.nome_rua%> Qd:<%=favorito.vk_anuncio.vk_empresa.vk_endereco.desc_quadra%>  Lt:<%=favorito.vk_anuncio.vk_empresa.vk_endereco.desc_lote%> Setor:<%=favorito.vk_anuncio.vk_empresa.vk_endereco.nome_bairro%>  <%=favorito.vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%=favorito.vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado%></span>
+                                      <span class="fnt-smaller fnt-lighter fnt-arial">Rua: <%=favorito.vk_anuncio.vk_empresa.vk_endereco.nome_rua rescue nil%> Qd:<%=favorito.vk_anuncio.vk_empresa.vk_endereco.desc_quadra rescue nil%>  Lt:<%=favorito.vk_anuncio.vk_empresa.vk_endereco.desc_lote rescue nil%> Setor:<%=favorito.vk_anuncio.vk_empresa.vk_endereco.nome_bairro rescue nil%>  <%#=favorito.vk_anuncio.vk_empresa.vk_en#ereco.vk_cidade.nome_cidade rescue nil%> <%#=favorito.vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado%></span>
                                   </div>
                               </div>
                           </div><!-- End Listing-->
@@ -162,7 +177,7 @@
 
 function Favoritar(id_anuncio){
    $.ajax({
-       url: '<%= salvarFavorito_path %>',
+       url: '<%= olheksalvarFavorito_path %>',
        data :
        {
           vk_anuncio_id: id_anuncio

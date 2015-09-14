@@ -30,17 +30,18 @@ Rails.application.routes.draw do
 
   get '/buscaPorVitrine/:vk_vitrine_id', to: 'site#index', as: 'buscaPorVitrine'
   get '/anuncioshow/:id', to: 'site#show_anuncio', as: 'anuncioshow'
-  get '/:id', to: 'site#show_empresa', as: 'loja'
+
 
   match '/buscaProdutos', to: 'vk_produtos#busca_produtos', via: 'get'
-  match '/pesquisa', to: 'site#index', via: 'get'
+  match '/olhekpesquisa', to: 'site#index', via: 'get'
 
-  match '/salvarFavorito', to: 'vk_anunciofavoritos#salvar', via: 'get'
+  match '/olheksalvarFavorito', to: 'vk_anunciofavoritos#salvar', via: 'get'
 
-  match '/salvaEndereco', to: 'vk_empresas#salva_endereco', via: 'get'
+  match '/olheksalvaEndereco', to: 'vk_empresas#salva_endereco', via: 'get'
+  match '/olhekexcluiEndereco', to: 'vk_empresas#exclui_endereco', via: 'get'
 
-  match '/salvaEndereco', to: 'vk_empresas#salva_endereco', via: 'get'
-  match '/excluiEndereco', to: 'vk_empresas#exclui_endereco', via: 'get'
+ #Essa rota sempre deverá ser a ultima
+  get '/:id', to: 'site#show_empresa', as: 'loja'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

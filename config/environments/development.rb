@@ -31,7 +31,7 @@ Sisvk::Application.configure do
   config.assets.debug = true
 
   #Configurações de local
- # config.i18n.default_locale = "pt-BR"
+  config.i18n.default_locale = "pt-BR"
   config.time_zone = 'Brasilia'
   config.encoding = "utf-8"
 end

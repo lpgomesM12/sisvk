@@ -1,6 +1,8 @@
 class VkAnunciosController < ApplicationController
   before_action :set_vk_anuncio, only: [:show, :edit, :update, :destroy]
 
+  before_action :authenticate_user!
+
   respond_to :html
 
   def index
