@@ -1,26 +1,21 @@
 Rails.application.routes.draw do
 
+  resources :vk_enderecoanuncios
   resources :vk_enderecoempresas
-
   resources :vk_anunciofavoritos
-
-  resources :vk_anuncios
-
+  resources :vk_anuncios do
+    member do
+      get  :endereco
+    end
+  end
   resources :vk_empresavitrines
-
   resources :vk_vitrines
-
   resources :vk_produtos
-
   resources :vk_empresas
-
   resources :vk_enderecos
-
   resources :vk_categoriaprodutos
-
   devise_for :users
   resources :vk_cidades
-
   resources :vk_estados
 
   root  'site#home'
@@ -40,7 +35,15 @@ Rails.application.routes.draw do
   match '/olheksalvaEndereco', to: 'vk_empresas#salva_endereco', via: 'get'
   match '/olhekexcluiEndereco', to: 'vk_empresas#exclui_endereco', via: 'get'
 
- #Essa rota sempre deverá ser a ultima
+  match '/listaProdutos', to: 'vk_anuncios#produtos', via: 'get'
+
+  get '/anunciar/:produto_id', to: 'vk_anuncios#new', as: 'anunciar'
+  get '/buscaEnderecoEmpresa', to: 'vk_anuncios#busca_endereco_empresa', as: 'buscaEnderecoEmpresa'
+  get '/buscaEnderecoAnuncio', to: 'vk_anuncios#busca_endereco_anuncio', as: 'buscaEnderecoAnuncio'
+  get '/salvaEnderecoAnuncio', to: 'vk_anuncios#salva_endereco_anuncio', as: 'salvaEnderecoAnuncio'
+  get '/excluiEnderecoAnuncio', to: 'vk_anuncios#exclui_endereco_anuncio', as: 'excluiEnderecoAnuncio'
+
+  #Essa rota sempre deverá ser a ultima
   get '/:id', to: 'site#show_empresa', as: 'loja'
 
   # The priority is based upon order of creation: first created -> highest priority.

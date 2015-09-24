@@ -42,6 +42,6 @@ class VkCategoriaprodutosController < ApplicationController
     end
 
     def vk_categoriaproduto_params
-      params.require(:vk_categoriaproduto).permit(:nome_categoria, :desc_categoria)
+      params.require(:vk_categoriaproduto).permit(:nome_categoria, :desc_categoria, :father_id)
     end
 end

@@ -25,9 +25,10 @@ class VkAnuncio < ActiveRecord::Base
   end
 
  def self.busca_nome_vitrine(nome,vitrine)
+   data = Time.now
     if nome
       nome = nome.downcase
-      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ? and data_inicio < ? and data_fim  >= ? and lower(nome_produto)like ?',vitrine,"%#{nome}%")
+      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id INNER JOIN vk_produtos pr on vk_produto_id = pr.id').where('ev.vk_vitrine_id = ? and data_inicio < ? and data_fim  >= ? and lower(pr.nome_produto) like ?',vitrine,data,data,"%#{nome}%")
      else
       self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ?',vitrine)
     end

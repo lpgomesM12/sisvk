@@ -1,42 +1,13 @@
-<div class="tabbable-panel">
-  <div class="tabbable-line">
-    <ul class="nav nav-tabs nav-justified">
-      <li class="active">
-        <a href="#tab_default_1" data-toggle="tab">
-        <b>Anunciar</b></a>
-      </li>
-      <li>
-        <a href="#tab_default_2" data-toggle="tab">
-        <b>Cadastrar Produto</b> </a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="tab_default_1">
-          <!--Começa aqui-->
-          <div class="panel panel-default">
-            <div class="panel-footer" style="background-color:white;">
-
-             <%= render 'form' %>
-
-            <%= link_to vk_anuncios_path, :class => "btn btn-default btn-sm" do %>
-              <span class="glyphicon glyphicon-arrow-left"></span> Voltar
-            <% end %>
-          </div>
-          <!--Termina aqui-->
-      </div>
-      <div class="tab-pane" id="tab_default_2">
-        <!--Começa aqui-->
-        <div class="panel panel-default">
-          <div class="panel-footer" style="background-color:white;">
-
-           <%= render 'vk_produtos/form' %>
-
-          <%= link_to vk_anuncios_path, :class => "btn btn-default btn-sm" do %>
-            <span class="glyphicon glyphicon-arrow-left"></span> Voltar
-          <% end %>
-        </div>
-        <!--Termina aqui-->
-      </div>
-    </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Novo Anuncio</h3>
   </div>
+  <div class="panel-footer" style="background-color:white;">
+
+   <%= render 'form' %>
+
+  <%= link_to vk_anuncios_path, :class => "btn btn-default btn-sm" do %>
+    <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %>
+
 </div>

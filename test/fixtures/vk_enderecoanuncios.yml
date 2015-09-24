@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vk_anuncio_id: 
+  vk_endereco_id: 
+
+two:
+  vk_anuncio_id: 
+  vk_endereco_id: 

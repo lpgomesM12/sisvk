@@ -11,15 +11,42 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nome_categoria %><br>
-    <%= f.text_field :nome_categoria %>
+<div class="row mar-bot40">
+  <div class="col-lg-3">
   </div>
-  <div class="field">
-    <%= f.label :desc_categoria %><br>
-    <%= f.text_field :desc_categoria %>
+     <div class="col-lg-6">
+       <%= f.label :Categoria_pai %><br>
+       <%= f.select :father_id, options_from_collection_for_select(VkCategoriaproduto.all, 'id',  'nome_categoria', @vk_categoriaproduto.father_id),{:include_blank => true}, {:class => 'form-control'} %>
+     </div>
+</div>
+
+<br>
+<div class="row mar-bot40">
+<div class="col-lg-3">
+</div>
+   <div class="col-lg-6">
+     <%= f.label :nome_categoria %><br>
+     <%= f.text_field :nome_categoria, :class => 'form-control' %>
+   </div>
+</div>
+<br/>
+<div class="row mar-bot40">
+  <div class="col-lg-3">
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+ <div class="col-lg-6">
+    <%= f.label :descricao_categoria %><br>
+    <%= f.text_field :desc_categoria, :class => 'form-control' %>
+ </div>
+</div>
+<br/>
+
+<div class="row mar-bot40">
+ <div class="col-lg-3">
+ </div>
+<div class="col-lg-6">
+  <button type="submit" class="btn btn-primary btn-sm">
+      <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+  </button>
+ </div>
+</div>
 <% end %>

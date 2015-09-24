@@ -10,7 +10,7 @@ include ActionView::Helpers::NumberHelper
     @vk_anuncios = busca_por_vitrine(params[:vk_vitrine_id])
 
    elsif params[:vk_vitrine_id] && params[:q]
-    @vk_anuncios = VkAnuncio.busca_nome_vitrine(params[:q],params[:vk_vitrine_id])
+    @vk_anuncios = VkAnuncio.busca_nome_vitrine(params[:q],params[:vk_vitrine_id]).paginate(:page => params[:page], :per_page => 50)
    end
 
    if params[:vk_vitrine_id]

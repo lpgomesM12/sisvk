@@ -14,6 +14,22 @@
 
         </div>
     </div>-->
+  <div id="Mensagem" style="display:none">
+   <br>
+    <%= form_tag nil, method: 'GET' do %>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <input id="q" name="q" type="text" class="form-control" placeholder="Digite o nome do produto para pesquisa. Ex: Arroz, Feijão...">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit" >Buscar</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+      <br />
+    <% end %>
+  </div>
 
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
         <div class="btn-group" role="group">
@@ -68,7 +84,7 @@
                                       <% end %>
                                       </p>
                                       <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent"><p style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></p></a>
-                                      <h3 class="media-heading">
+                                      <h3 class="media-heading"<%=vk_anuncio.id%>
                                         <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent" style="color: #0088cc; font-weight:bolder"><%= number_to_currency(vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a><a href="<%=loja_path(vk_anuncio.vk_empresa.nome_pagina)%>"><small class="pull-right"><%= vk_anuncio.vk_empresa.nome_empresa%></small></a>
                                       </h3>
                                       <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
@@ -79,7 +95,10 @@
                                           <li>5 Baths</li> -->
                                       </ul>
                                       <!--<span class="fnt-smaller fnt-lighter fnt-arial">Rua: <%=vk_anuncio.vk_empresa.vk_endereco.nome_rua rescue nil%> Qd:<%=vk_anuncio.vk_empresa.vk_endereco.desc_quadra rescue nil%>  Lt:<%=vk_anuncio.vk_empresa.vk_endereco.desc_lote rescue nil%> Setor:<%=vk_anuncio.vk_empresa.vk_endereco.nome_bairro rescue nil%>  <%#=vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%=vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado rescue nil%></span>-->
-                                      <a href="#"><span class="fnt-smaller fnt-lighter fnt-arial">Endereço Lojas</span></a>
+                                      <!--<a href="javascript:busca_endereco(<%=vk_anuncio.id%>);"><span class="fnt-smaller fnt-lighter fnt-arial">Endereço Lojas</span></a>-->
+                                      <button type="button"  onclick="busca_endereco(<%=vk_anuncio.id%>);" class="btn btn-default btn-xs">
+                                        <span class="glyphicon glyphicon-map-marker"></span> Endereço Lojas
+                                      </button>
                                   </div>
                               </div>
                           </div><!-- End Listing-->
@@ -88,14 +107,8 @@
                       </div><!-- End Col -->
 
                      <div class="row">
-                      <div class="col-lg-5">
-                      </div>
-                      <div class="col-lg-5">
-                        <nav>
-                          <ul class="pagination">
-                            <%= will_paginate @vk_anuncios , :inner_window => 2%>
-                          </ul>
-                        </nav>
+                      <div class="col-lg-12">
+                         <%= will_paginate @vk_anuncios, renderer: BootstrapPagination::Rails, :inner_window => 1, :outer_window => 0, class: "paginates"  %>
                       </div>
                      </div>
 
@@ -173,7 +186,53 @@
   </div>
   </div>
 
+
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <h4 class="modal-title" id="myModalLabel"></h4>
+         <div class="alert alert-info alert-dismissible fade in" role="alert">
+             Ofertas estarão disponível somente para os endereços abaixo.
+        </div>
+       </div>
+
+       <div class="modal-body">
+        <ui id="tbodyid2">
+        </ui>
+
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+       </div>
+     </div>
+   </div>
+  </div>
+
 <script type="text/javascript">
+
+function MostrarEsconderMensagem(){
+        $("#Mensagem").toggle();
+  }
+
+function busca_endereco(id){
+      $.ajax({
+        url: '<%= buscaEnderecoAnuncio_path %>',
+        data : {
+          vk_anuncio_id : id
+        },
+        success: function(data){
+          $('#tbodyid2').empty();
+          for (var i in data) {
+            var item = data[i];
+             $('#tbodyid2').append('<li><td>Rua:'+item.nome_rua+' Qd.'+item.desc_quadra+' Lt.'+item.desc_lote+'<br> '+item.nome_bairro+'<br> '+item.nome_cidade+'-'+item.sigl_estado+'</li> <br>')
+          };
+
+          $('#myModal1').modal('show');
+        }
+      })
+  }
 
 function Favoritar(id_anuncio){
    $.ajax({
@@ -201,11 +260,15 @@ function Favoritar(id_anuncio){
  })
 
  $(document).ready(function() {
-   $(".btn-pref .btn").click(function () {
+
+    $(".btn-pref .btn").click(function () {
     $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-    // $(".tab").addClass("active"); // instead of this do the below
     $(this).removeClass("btn-default").addClass("btn-primary");
     });
+
+    $("#MostrarEsconderMensagem").click(MostrarEsconderMensagem);
+
   });
+
 
 </script>

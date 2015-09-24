@@ -1,10 +1,10 @@
-<h1>Listing vk_categoriaprodutos</h1>
+<h2>Produtos</h2>
 
-<table>
+<table class="table table-hover" >
   <thead>
     <tr>
       <th>Nome categoria</th>
-      <th>Desc categoria</th>
+      <th>Descricao</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= vk_categoriaproduto.nome_categoria %></td>
         <td><%= vk_categoriaproduto.desc_categoria %></td>
-        <td><%= link_to 'Show', vk_categoriaproduto %></td>
-        <td><%= link_to 'Edit', edit_vk_categoriaproduto_path(vk_categoriaproduto) %></td>
-        <td><%= link_to 'Destroy', vk_categoriaproduto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Exibir', vk_categoriaproduto %></td>
+        <td><%= link_to 'Editar', edit_vk_categoriaproduto_path(vk_categoriaproduto) %></td>
+        <td><%= link_to 'Deletar', vk_categoriaproduto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

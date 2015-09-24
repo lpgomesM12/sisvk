@@ -10,12 +10,14 @@
     </div>
 <% end %>
 
-
 <div class="row mar-bot40">
-  <!--<div class="col-lg-4">
-      <%= f.label :Categoria_produto %><br>
+  <div class="col-lg-12">
+      <%= f.label :Tipo_Produto %><br>
       <%= f.select :vk_categoriaproduto_id, options_from_collection_for_select(VkCategoriaproduto.all, 'id', 'nome_categoria',@vk_produto.vk_categoriaproduto_id), {:include_blank => true}, {:class => 'form-control'}%>
-  </div>-->
+  </div>
+</div>
+<br>
+<div class="row mar-bot40">
   <div class="col-lg-12" >
     <%= f.label :nome_produto %><br>
     <%= f.text_field :nome_produto, :class => 'form-control' %>
@@ -88,8 +90,6 @@
 
 <%= f.hidden_field :user_inclusao, :value => current_user.id %>
 <%= f.hidden_field :vk_empresa_id, :value => current_user.vk_empresa_id %>
-
-
 
 <div class="btn-group" role="group" aria-label="...">
   <button type="submit" class="btn btn-primary btn-sm">

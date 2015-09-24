@@ -7,7 +7,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Exibir Anuncio</h3>
+    <h3 class="panel-title">Anuncio</h3>
   </div>
   <div class="panel-footer" style="background-color:white;">
 
@@ -20,57 +20,95 @@
   <strong>Descrição Anuncio:</strong>
   <%= @vk_anuncio.desc_anuncio %>
 </p>
+<div class="row">
+ <div class="col-lg-3" >
+    <p>
+      <strong>Valor Produto:</strong>
+      <%= @vk_anuncio.valr_produto %>
+    </p>
+ </div>
+ <div class="col-lg-3" >
+    <p>
+      <strong>Valor Com Desconto:</strong>
+      <%= @vk_anuncio.valr_comdesconto %>
+    </p>
+ </div>
+ <div class="col-lg-3" >
+    <p>
+      <strong>Data inicio:</strong>
+      <%= @vk_anuncio.data_inicio.blank? ? '' : @vk_anuncio.data_inicio.strftime("%d/%m/%Y")%>
+    </p>
+</div>
+ <div class="col-lg-3" >
+    <p>
+      <strong>Data fim:</strong>
+      <%= @vk_anuncio.data_fim.blank? ? '' : @vk_anuncio.data_fim.strftime("%d/%m/%Y") %>
+    </p>
+ </div>
+</div>
 
 <p>
-  <strong>Valor Produto:</strong>
-  <%= @vk_anuncio.valr_produto %>
-</p>
-
-<p>
-  <strong>Valor Com Desconto:</strong>
-  <%= @vk_anuncio.valr_comdesconto %>
-</p>
-
-<p>
-  <strong>Data inicio:</strong>
-  <%= @vk_anuncio.data_inicio %>
-</p>
-
-<p>
-  <strong>Data fim:</strong>
-  <%= @vk_anuncio.data_fim %>
-</p>
-
-<p>
-  <strong>Qtd. Disponivel:</strong>
-  <%= @vk_anuncio.numr_qtddisponivel %>
-</p>
-
-<p>
-  <strong>Ilimitado:</strong>
-  <% if @vk_anuncio.flag_ilimitado %>
-    Sim
-  <%else%>
-    Não
-  <%end%>
-</p>
-
-<p>
-  <strong>Vk produtos:</strong>
+  <strong>Produto:</strong>
   <%= @vk_anuncio.vk_produto.nome_produto %>
 </p>
 <hr>
 <div class="row mar-bot40">
   <ul>
     <%for fotoproduto in @vk_anuncio.vk_produto.vk_fotoproduto %>
-    <div class="col-lg-4" >
-      <li><%= link_to image_tag(fotoproduto.image.url(:thumb  ))%></li>
+    <div class="col-lg-3" >
+      <li><%= link_to image_tag(fotoproduto.image.url(:thumb))%></li>
     </div>
     <%end%>
   </ul>
+  <div class="col-lg-7">
+    <div class="alert alert-info alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        Cadastre todos os endereços das lojas onde essa promoção estará disponivel.
+   </div>
+  </div>
+</div>
+<hr>
+
+<button class="btn btn-success" type="button" onclick="$('#myModal1').modal('show');">Adicionar Endereços
+   <span  class="glyphicon glyphicon-plus-sign"></span>
+</button>
+<hr>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Rua</th>
+        <th>Quadra</th>
+        <th>Lote</th>
+        <th>Bairro</th>
+        <th>Cep</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tlbendereco">
+      <% @vk_enderecoAnuncio.each do |anuncio| %>
+        <tr>
+          <td><%= anuncio.vk_endereco.nome_rua %></td>
+          <td><%= anuncio.vk_endereco.desc_quadra %></td>
+          <td><%= anuncio.vk_endereco.desc_lote %></td>
+          <td><%= anuncio.vk_endereco.nome_bairro %></td>
+           <td><%= anuncio.vk_endereco.desc_cep %></td>
+          <td><%= anuncio.vk_endereco.vk_cidade.nome_cidade %></td>
+          <td><%= anuncio.vk_endereco.vk_cidade.vk_estado.sigl_estado %></td>
+          <td align='right'>
+
+          <button class="btn btn-default btn-sm" type="button" onclick="exclui_endereco('<%=anuncio.id%>');">
+              <span  class="glyphicon glyphicon-trash"></span>
+         </button>
+        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-</div>
 </div>
 
 <div class="btn-group">
@@ -81,3 +119,89 @@
   <span class="glyphicon glyphicon-arrow-left"></span> Voltar
 <% end %>
 </div>
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+       <h4 class="modal-title" id="myModalLabel">Lista de Endereços</h4>
+     </div>
+     <div class="modal-body">
+       <br />
+
+      <table id="table_produto" name="table_produto" class="table table-hover">
+         <thead>
+           <tr>
+           </tr>
+         </thead>
+         <tbody id="tbodyid2">
+             <tr>
+             </tr>
+         </tbody>
+       </table>
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+     </div>
+   </div>
+ </div>
+</div>
+
+
+<script>
+
+function salva_endereco(vk_endereco_id){
+      $.ajax({
+        url: '<%= salvaEnderecoAnuncio_path %>',
+        data : {
+          vk_anuncio_id : '<%=@vk_anuncio.id%>',
+          vk_endereco_id :vk_endereco_id
+        },
+        success: function(data){
+          $('#tlbendereco').empty();
+          for (var i in data) {
+            var item = data[i];
+             $('#tlbendereco').append('<tr><td>'+item.nome_rua+'</td><td>'+item.desc_quadra+'</td><td>'+item.desc_lote+'</td><td>'+item.nome_bairro+'</td><td>'+item.desc_cep+'</td><td>'+item.nome_cidade+'</td><td>'+item.sigl_estado+'</td><td align="right"><button class="btn btn-default btn-sm" type="button" onclick="AcaoExcluir('+item.id+');"><span  class="glyphicon glyphicon-trash"></span></button><td/>')
+          };
+        }
+      })
+    }
+
+    function busca_endereco(){
+          $.ajax({
+            url: '<%= buscaEnderecoEmpresa_path %>',
+            data : {
+              vk_empresa_id : '<%=current_user.vk_empresa_id%>'
+            },
+            success: function(data){
+              $('#tbodyid2').empty();
+              for (var i in data) {
+                var item = data[i];
+                 $('#tbodyid2').append('<tr><td>Rua:'+item.nome_rua+' Qd.'+item.desc_quadra+' Lt.'+item.desc_lote+' '+item.nome_bairro+' '+item.nome_cidade+'-'+item.sigl_estado+'</td><td align="right"><button class="btn btn-default btn-sm" type="button" onclick="salva_endereco('+item.vk_endereco_id+');"><span  class="glyphicon glyphicon-floppy-save"></span></button><td/></tr>')
+              };
+            }
+          })
+      }
+
+
+  function exclui_endereco(id){
+            $.ajax({
+              url: '<%= excluiEnderecoAnuncio_path %>',
+              data : {
+                vk_anuncio_id : '<%=@vk_anuncio.id%>',
+                id :id
+              },
+              success: function(data){
+                $('#tlbendereco').empty();
+                for (var i in data) {
+                  var item = data[i];
+                   $('#tlbendereco').append('<tr><td>'+item.nome_rua+'</td><td>'+item.desc_quadra+'</td><td>'+item.desc_lote+'</td><td>'+item.nome_bairro+'</td><td>'+item.desc_cep+'</td><td>'+item.nome_cidade+'</td><td>'+item.sigl_estado+'</td><td align="right"><button class="btn btn-default btn-sm" type="button" onclick="exclui_endereco('+item.id+');"><span  class="glyphicon glyphicon-trash"></span></button><td/>')
+                };
+              }
+        })
+    }
+
+  busca_endereco();
+
+</script>

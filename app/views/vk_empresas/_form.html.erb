@@ -253,8 +253,8 @@ function salvaEndereco(){
       $.ajax({
         url: '<%= olheksalvaEndereco_path %>',
         data : {
-          nome_bairro : $('#vk_endereco_nome_rua').val(),
-          nome_rua:   $('#vk_endereco_nome_bairro').val(),
+          nome_bairro : $('#vk_endereco_nome_bairro').val(),
+          nome_rua:   $('#vk_endereco_nome_rua').val(),
           quadra: $('#vk_endereco_desc_quadra').val(),
           lote: $('#vk_endereco_desc_lote').val(),
           complemento: $('#vk_endereco_desc_complemento').val(),

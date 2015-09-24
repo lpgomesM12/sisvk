@@ -1,0 +1,29 @@
+<h1>Listing vk_enderecoanuncios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vk anuncio</th>
+      <th>Vk endereco</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vk_enderecoanuncios.each do |vk_enderecoanuncio| %>
+      <tr>
+        <td><%= vk_enderecoanuncio.vk_anuncio %></td>
+        <td><%= vk_enderecoanuncio.vk_endereco %></td>
+        <td><%= link_to 'Show', vk_enderecoanuncio %></td>
+        <td><%= link_to 'Edit', edit_vk_enderecoanuncio_path(vk_enderecoanuncio) %></td>
+        <td><%= link_to 'Destroy', vk_enderecoanuncio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vk enderecoanuncio', new_vk_enderecoanuncio_path %>
