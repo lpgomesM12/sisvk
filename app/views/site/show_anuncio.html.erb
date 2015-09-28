@@ -14,16 +14,46 @@
        <h6><%=@vk_anuncio.vk_produto.nome_produto%></h6>
        <div class="caption">
          <h6 style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(@vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></h6>
-         <h2 id="valor_produto", style="color: #0088cc; font-weight:bolder"><%= number_to_currency(@vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></h2>
+         <h2 id="valor_produto", style="color: #EC7D00; font-weight:bolder"><%= number_to_currency(@vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></h2>
          <h6>Promoção válida até: <%=@vk_anuncio.data_fim.blank? ? '' : @vk_anuncio.data_fim.strftime("%d/%m/%Y")%></h6>
          <hr>
          <h4><a href="#" style="text-decoration: none"> <%= @vk_anuncio.vk_empresa.nome_empresa%></a></h4>
-          <h4><small>Endereço:</small></h4>
+          
+          <button type="button"  onclick="busca_endereco(<%=@vk_anuncio.id%>);" class="btn btn-default btn-xs">
+                <span class="glyphicon glyphicon-map-marker"></span> Endereço Lojas
+          </button>
+          <!--<h4><small>Endereço:</small></h4>
           <h4><small>Rua: <%=@vk_anuncio.vk_empresa.vk_endereco.nome_rua%> Qd:<%=@vk_anuncio.vk_empresa.vk_endereco.desc_quadra%>  Lt:<%=@vk_anuncio.vk_empresa.vk_endereco.desc_lote%> </small></h4>
-          <h4><small><%=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado%></small></h4>
+          <h4><small><%=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado%></small></h4>-->
       </div>
   </div>
 </div>
+
+
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <h4 class="modal-title" id="myModalLabel"></h4>
+         <div class="alert alert-info alert-dismissible fade in" role="alert">
+             Ofertas estarão disponível somente para os endereços abaixo.
+        </div>
+       </div>
+
+       <div class="modal-body">
+        <ui id="tbodyid2">
+        </ui>
+
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+       </div>
+     </div>
+   </div>
+  </div>
+
+  
 
 </div>
 <style media="screen">
@@ -32,3 +62,25 @@
 	background-color:white ;
  }
 </style>
+
+
+<script>
+
+function busca_endereco(id){
+      $.ajax({
+        url: '<%= buscaEnderecoAnuncio_path %>',
+        data : {
+          vk_anuncio_id : id
+        },
+        success: function(data){
+          $('#tbodyid2').empty();
+          for (var i in data) {
+            var item = data[i];
+             $('#tbodyid2').append('<li><td>Rua:'+item.nome_rua+' Qd.'+item.desc_quadra+' Lt.'+item.desc_lote+'<br> '+item.nome_bairro+'<br> '+item.nome_cidade+'-'+item.sigl_estado+'</li> <br>')
+          };
+
+          $('#myModal1').modal('show');
+        }
+      })
+  }
+</script>

@@ -70,7 +70,7 @@
                                  </a>
                                   <div class="clearfix visible-sm"></div>
                                   <div class="media-body fnt-smaller">
-                                      <p  id="anuncio<%=vk_anuncio.id%>" class="hidden-xs"><a href="/anuncioshow/<%=vk_anuncio.id%>"><%=vk_anuncio.desc_titulo %></a>
+                                      <p  id="anuncio<%=vk_anuncio.id%>"  class="hidden-xs"><a  href="/anuncioshow/<%=vk_anuncio.id%>"><%=vk_anuncio.desc_titulo %></a>
                                       <% if user_signed_in? %>
                                       <%if vk_anuncio.favorito%>
                                           <button type="button"  class="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="top" title="Desfavoritar"  onclick="Favoritar('<%=vk_anuncio.id%>')">
@@ -85,7 +85,7 @@
                                       </p>
                                       <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent"><p style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></p></a>
                                       <h3 class="media-heading"<%=vk_anuncio.id%>
-                                        <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent" style="color: #0088cc; font-weight:bolder"><%= number_to_currency(vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a><a href="<%=loja_path(vk_anuncio.vk_empresa.nome_pagina)%>"><small class="pull-right"><%= vk_anuncio.vk_empresa.nome_empresa%></small></a>
+                                        <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent" style="color: #EC7D00; font-weight:bolder"><%= number_to_currency(vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a><a href="<%=loja_path(vk_anuncio.vk_empresa.nome_pagina)%>"><small class="pull-right"><%= vk_anuncio.vk_empresa.nome_empresa%></small></a>
                                       </h3>
                                       <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                         <!--  <li>4,820 SqFt</li>
@@ -158,7 +158,7 @@
                                       </p>
                                       <a href="/anuncioshow/<%=favorito.vk_anuncio.id%>" target="_parent"><p style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(favorito.vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></p></a>
                                       <h3 class="media-heading">
-                                        <a href="/anuncioshow/<%=favorito.vk_anuncio.id%>" target="_parent" style="color: #0088cc; font-weight:bolder"><%= number_to_currency(favorito.vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a><a href="<%=loja_path(favorito.vk_anuncio.vk_empresa.nome_pagina)%>"><small class="pull-right"><%= favorito.vk_anuncio.vk_empresa.nome_empresa%></small></a>
+                                        <a href="/anuncioshow/<%=favorito.vk_anuncio.id%>" target="_parent" style="color: #EC7D00; font-weight:bolder"><%= number_to_currency(favorito.vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a><a href="<%=loja_path(favorito.vk_anuncio.vk_empresa.nome_pagina)%>"><small class="pull-right"><%= favorito.vk_anuncio.vk_empresa.nome_empresa%></small></a>
                                       </h3>
                                       <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                         <!--  <li>4,820 SqFt</li>
