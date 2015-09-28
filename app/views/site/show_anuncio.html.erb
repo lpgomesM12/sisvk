@@ -18,13 +18,13 @@
          <h6>Promoção válida até: <%=@vk_anuncio.data_fim.blank? ? '' : @vk_anuncio.data_fim.strftime("%d/%m/%Y")%></h6>
          <hr>
          <h4><a href="#" style="text-decoration: none"> <%= @vk_anuncio.vk_empresa.nome_empresa%></a></h4>
-          
+
           <button type="button"  onclick="busca_endereco(<%=@vk_anuncio.id%>);" class="btn btn-default btn-xs">
                 <span class="glyphicon glyphicon-map-marker"></span> Endereço Lojas
           </button>
           <!--<h4><small>Endereço:</small></h4>
-          <h4><small>Rua: <%=@vk_anuncio.vk_empresa.vk_endereco.nome_rua%> Qd:<%=@vk_anuncio.vk_empresa.vk_endereco.desc_quadra%>  Lt:<%=@vk_anuncio.vk_empresa.vk_endereco.desc_lote%> </small></h4>
-          <h4><small><%=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado%></small></h4>-->
+          <h4><small>Rua: <%#=@vk_anuncio.vk_empresa.vk_endereco.nome_rua%> Qd:<%#=@vk_anuncio.vk_empresa.vk_endereco.desc_quadra%>  Lt:<%#=@vk_anuncio.vk_empresa.vk_endereco.desc_lote%> </small></h4>
+          <h4><small><%#=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.nome_cidade%> <%#=@vk_anuncio.vk_empresa.vk_endereco.vk_cidade.vk_estado.sigl_estado%></small></h4>-->
       </div>
   </div>
 </div>
@@ -53,7 +53,7 @@
    </div>
   </div>
 
-  
+
 
 </div>
 <style media="screen">
