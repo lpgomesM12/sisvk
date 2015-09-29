@@ -34,6 +34,15 @@ class VkAnuncio < ActiveRecord::Base
     end
  end
 
+ def self.busca_categoria_vitrine(produto,vitrine)
+   data = Time.now
+    if produto
+      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id INNER JOIN vk_produtos pr on vk_produto_id = pr.id INNER JOIN vk_categoriaprodutos cp on pr.vk_categoriaproduto_id = cp.id').where('ev.vk_vitrine_id = ? and data_inicio < ? and data_fim  >= ? and cp.id = ?',vitrine,data,data,produto)
+     else
+      self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ?',vitrine)
+    end
+ end
+
  def self.busca_por_vitrine(vitrine)
        data = Time.now
       self.joins('INNER JOIN vk_empresas ve on ve.id = vk_empresa_id INNER JOIN vk_empresavitrines ev on ve.id = ev.vk_empresa_id ').where('ev.vk_vitrine_id = ? and data_inicio <= ? and data_fim  >= ?',vitrine,data,data).paginate(:page => params[:page], :per_page => 10)

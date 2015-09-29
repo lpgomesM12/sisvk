@@ -5,10 +5,10 @@ include ActionView::Helpers::NumberHelper
  def index
    if params[:q] && !params[:vk_vitrine_id]
    @vk_anuncios = VkAnuncio.find_by_nome_anuncio_or_all(params[:q])
+   elsif params[:vk_vitrine_id] && params[:categoria]
+    @vk_anuncios = VkAnuncio.busca_categoria_vitrine(params[:categoria],params[:vk_vitrine_id]).paginate(:page => params[:page], :per_page => 50)
    elsif params[:vk_vitrine_id] && !params[:q]
-
     @vk_anuncios = busca_por_vitrine(params[:vk_vitrine_id])
-
    elsif params[:vk_vitrine_id] && params[:q]
     @vk_anuncios = VkAnuncio.busca_nome_vitrine(params[:q],params[:vk_vitrine_id]).paginate(:page => params[:page], :per_page => 50)
    end
@@ -16,6 +16,8 @@ include ActionView::Helpers::NumberHelper
    if params[:vk_vitrine_id]
      @vitrine  = params[:vk_vitrine_id]
    end
+
+  @vk_categoriaProduto = VkCategoriaproduto.all
 
   if user_signed_in?
       @vk_anuncioFavorito = VkAnunciofavorito.where(user_id: current_user.id)

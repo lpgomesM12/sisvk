@@ -15,21 +15,54 @@
 
         </div>
     </div>-->
+
   <div id="Mensagem" style="display:none">
-   <br>
+    <div class="row">
+    <br>
     <%= form_tag nil, method: 'GET' do %>
+
+    <input type="hidden" id="categoria" name="categoria">
+
+    <div class="col-lg-2">
+        <div class="dropdown">
+            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                Produtos <span class="caret"></span>
+            </a>
+        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+        <% @vk_categoriaProduto.each do |categoria| %>
+          <%if categoria.father_id == nil%>
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#"><%=categoria.nome_categoria%></a>
+                <ul class="dropdown-menu">
+                  <%@catmenu = VkCategoriaproduto.where(father_id: categoria.id)%>
+                <%@catmenu.each do | menu|%>
+                   <li><a href="javascript:Pesquisar(<%=menu.id%>);"><%=menu.nome_categoria%></a></li>
+                  <%end%>
+                </ul>
+              </li>
+            <%end%>
+          <%end%>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-lg-10">
       <div class="row">
         <div class="col-lg-12">
           <div class="input-group">
-            <input id="q" name="q" type="text" class="form-control" placeholder="Digite o nome do produto para pesquisa. Ex: Arroz, Feijão...">
+            <input id="q" name="q" type="text" class="form-control" placeholder="Ou digite o nome do produto para pesquisa. Ex: Arroz, Feijão...">
             <span class="input-group-btn">
-              <button class="btn btn-primary" type="submit" >Buscar</button>
+              <button class="btn btn-primary" id="BotaoPesquisa" type="submit" >Buscar</button>
             </span>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
       </div><!-- /.row -->
       <br />
+      </div>
     <% end %>
+
+  </div>
+
   </div>
 
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -215,6 +248,11 @@
 
 function MostrarEsconderMensagem(){
         $("#Mensagem").toggle();
+  }
+
+  function Pesquisar(id){
+     $("#categoria").val(id);
+     $("#BotaoPesquisa").click();
   }
 
 function busca_endereco(id){
