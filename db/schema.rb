@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916023558) do
+ActiveRecord::Schema.define(version: 20151003193745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,10 @@ ActiveRecord::Schema.define(version: 20150916023558) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "nome_pagina"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "vk_empresas", ["vk_endereco_id"], name: "index_vk_empresas_on_vk_endereco_id", using: :btree
@@ -141,6 +145,8 @@ ActiveRecord::Schema.define(version: 20150916023558) do
     t.integer  "vk_cidade_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "longitude"
+    t.string   "latitude"
   end
 
   add_index "vk_enderecos", ["vk_cidade_id"], name: "index_vk_enderecos_on_vk_cidade_id", using: :btree

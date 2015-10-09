@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   match '/listarCidade', to: 'vk_cidades#get_cities', via: 'get'
   match '/buscaVitrines', to: 'vk_vitrines#buscaVitrines', via: 'get'
 
-  get '/buscaPorVitrine/:vk_vitrine_id', to: 'site#index', as: 'buscaPorVitrine'
+  get '/buscaPorVitrine/:vk_vitrine_id/:lat/:long/:categoria', to: 'site#index', as: 'buscaPorVitrine'
   get '/anuncioshow/:id', to: 'site#show_anuncio', as: 'anuncioshow'
 
 
@@ -42,7 +42,6 @@ Rails.application.routes.draw do
   get '/buscaEnderecoAnuncio', to: 'vk_anuncios#busca_endereco_anuncio', as: 'buscaEnderecoAnuncio'
   get '/salvaEnderecoAnuncio', to: 'vk_anuncios#salva_endereco_anuncio', as: 'salvaEnderecoAnuncio'
   get '/excluiEnderecoAnuncio', to: 'vk_anuncios#exclui_endereco_anuncio', as: 'excluiEnderecoAnuncio'
-
   #Essa rota sempre deverá ser a ultima
   get '/:id', to: 'site#show_empresa', as: 'loja'
 

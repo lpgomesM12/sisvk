@@ -1,24 +1,71 @@
+<%= stylesheet_link_tag   "style" %>
+<%= javascript_include_tag "googleAnalytcs" %>
+
+
+<%@cate = "no"%>
+<%@lat = "no"%>
+<%@long = "no"%>
+<%=hidden_field(:categoria, :categoria)%>
+
+	<div class="row mar-bot40">
+		 <div class="col-lg-12">
+			 <div class="col-lg-12">
+			   <h2 align="center" class="abel-regular" style="color:#3a5795"><strong>Informe seu CEP e encontre as melhores promoções perto de você.</strong></h2>
+	    	</div>
+		 </div>
+	</div>
+	<br>
+	<div class="jumbotron" style="background-color:#dce3f2">
+	<div class="row mar-bot40">
+	 <div class="col-lg-3">
+	 </div>
+		<div class="col-lg-6">
+				<div class="input-group">
+					<input id="cep" name="cep" type="text" class="form-control" placeholder="Digite aqui seu CEP...">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" id="BotaoPesquisaCep" onclick="BuscaEnderecoCep();" >Buscar</button>
+
+           <%= button_to "New User", buscaPorVitrine_path(1,@lat,@long, @cate), :class => "button", :style=> "display: none", id: "botao", :method => :get  %>
+					</span>
+			 </div>
+		</div>
+	</div>
+</div>
 <hr>
+
+<div class="row mar-bot40">
+	 <div class="col-lg-12">
+		 <div class="col-lg-1">
+		 </div>
+		 <div class="col-lg-10">
+		   <h3 class="abel-regular" align="center" style="color:#3a5795">Ou clique no <strong>carrinho</strong> e encontre as melhores promoções de sua cidade...</h3>
+    	</div>
+	 </div>
+</div>
+<br>
 <div class="row mar-bot40">
 <div class="col-lg-5">
 </div>
 <div class="col-lg-4">
-	<a href="/buscaPorVitrine/1"> <span style="font-size:100px" class=" glyphicon glyphicon-shopping-cart"></span></a>
-	<span><h4>Supermercados...</h4></span>
+	<%= link_to buscaPorVitrine_path(1,@lat,@long, @cate) do %>
+		<span style="font-size:100px" class=" glyphicon glyphicon-shopping-cart"></span>
+	<% end %>
+
  </div>
 </div>
 <hr>
 
-<div class="jumbotron" style="background-color:#ebeff7">
+<!--<div class="jumbotron" style="background-color:#ebeff7">
 	<div class="row mar-bot40">
 		 <div class="col-lg-12">
 			 <h4>Quer encontrar as melhores promoções dos supermercados de sua cidade? então OlheK!</h4>
-	     <hr>
 			 <h5>Por enquanto estamos somente na cidade de Goiânia.</h5>
 		 </div>
 	</div>
-</div>
+</div> -->
 
+<h4 class="title" style="color:#3a5795">Produtos Mais Recomendados</h4>
+<hr style="border-color: #5d5d5d">
 <script>
  function buscaVitrines(father_id) {
   $.ajax({
@@ -39,6 +86,14 @@
   })
 }
 
+function Pesquisar(id){
+   $("#categoria_categoria").val(id);
+	 alert($("#categoria_categoria").val());
+	 //$("#botao").click();
+	 $(location).attr('href','buscaPorVitrine/1/no/no/no');
+ }
+
+
 buscaVitrines()
 
 
@@ -46,6 +101,7 @@ buscaVitrines()
 
 
 <style media="screen">
+
 .btn-sq-lg {
 width: 150px !important;
 height: 150px !important;

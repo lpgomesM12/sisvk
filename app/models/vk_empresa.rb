@@ -4,6 +4,9 @@ class VkEmpresa < ActiveRecord::Base
 
   accepts_nested_attributes_for :vk_endereco, allow_destroy: true
 
+  has_attached_file :logo, :styles => { :medium => "300x120#", :thumb => "100x31#" }
+  validates_attachment_content_type :logo, :content_type => %w(image/jpeg image/jpg image/png)
+
  validates :nome_pagina, :presence => { :message => 'Digite o nome da pagina' }
  validate :valida_nome_pagina
 

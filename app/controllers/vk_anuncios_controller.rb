@@ -96,6 +96,9 @@ end
 
   def create
     @vk_anuncio = VkAnuncio.new(vk_anuncio_params)
+
+    @vk_anuncio.data_fim = (@vk_anuncio.data_fim + 23.hours + 59.minutes + 59.second)
+
     @vk_anuncio.save
     respond_with(@vk_anuncio)
   end

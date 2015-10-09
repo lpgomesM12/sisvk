@@ -15,6 +15,8 @@ class VkEmpresasController < ApplicationController
   @vk_endereco.desc_complemento = params[:complemento]
   @vk_endereco.desc_cep = params[:cep]
   @vk_endereco.vk_cidade_id = params[:cidade]
+  @vk_endereco.latitude = params[:latitude]
+  @vk_endereco.longitude = params[:longitude]
   @vk_endereco.save
 
   @vk_enderecoEmpresa = VkEnderecoempresa.new
@@ -23,7 +25,7 @@ class VkEmpresasController < ApplicationController
   @vk_enderecoEmpresa.save
 
    enderecoEmpresa = VkEnderecoempresa.where(vk_empresa_id: params[:empresa])
-  enderecoEmpresa_json = enderecoEmpresa.map { |item| {:id => item.id,
+   enderecoEmpresa_json = enderecoEmpresa.map { |item| {:id => item.id,
                                                        :nome_rua => item.vk_endereco.nome_rua,
                                                        :desc_quadra => item.vk_endereco.desc_quadra,
                                                        :desc_lote => item.vk_endereco.desc_lote,
@@ -110,6 +112,6 @@ end
     end
 
     def vk_empresa_params
-      params.require(:vk_empresa).permit(:nome_pagina, :nome_empresa, :cnpj_empresa, :nome_responsavel, :desc_telefone, :resu_atividade, vk_endereco_attributes: [ :id, :nome_bairro , :nome_rua, :desc_quadra, :desc_lote, :desc_complemento, :desc_cep, :vk_cidade_id])
+      params.require(:vk_empresa).permit(:nome_pagina, :nome_empresa, :cnpj_empresa, :nome_responsavel, :desc_telefone, :resu_atividade, :logo, vk_endereco_attributes: [ :id, :nome_bairro , :nome_rua, :desc_quadra, :desc_lote, :desc_complemento, :desc_cep, :vk_cidade_id, :latitude, :longitude])
     end
 end

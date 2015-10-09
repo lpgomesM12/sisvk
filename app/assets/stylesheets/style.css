@@ -1,0 +1,9 @@
+@font-face {
+font-family: "AbelRegular";
+src: url("Abel-Regular.ttf") format("truetype");
+
+}
+
+.abel-regular{
+    font-family: "AbelRegular";
+}

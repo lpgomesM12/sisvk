@@ -3,9 +3,11 @@ class SiteController < ApplicationController
 include ActionView::Helpers::NumberHelper
  # respond_to :html
  def index
-   if params[:q] && !params[:vk_vitrine_id]
+   if params[:lat] != "" && params[:lat] != "no" && params[:long] != "" && params[:long] != "no"
+   @vk_anuncios = VkAnuncio.busca_lat_long(params[:lat],params[:long]).paginate(:page => params[:page], :per_page => 50)
+   elsif params[:q] && !params[:vk_vitrine_id]
    @vk_anuncios = VkAnuncio.find_by_nome_anuncio_or_all(params[:q])
-   elsif params[:vk_vitrine_id] && params[:categoria]
+ elsif params[:vk_vitrine_id] && params[:categoria] && params[:categoria] != "no"
     @vk_anuncios = VkAnuncio.busca_categoria_vitrine(params[:categoria],params[:vk_vitrine_id]).paginate(:page => params[:page], :per_page => 50)
    elsif params[:vk_vitrine_id] && !params[:q]
     @vk_anuncios = busca_por_vitrine(params[:vk_vitrine_id])

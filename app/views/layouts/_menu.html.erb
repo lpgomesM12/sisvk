@@ -1,54 +1,64 @@
-<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#3a5795">
-  <!--#54217c-->
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <!-- Sidebar -->
-      <a class="navbar-brand" href="<%=root_path%>"><%= image_tag ("Logo.png")%></a>
-  </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
+<div class="navbar navbar-default navbar-fixed-top"  style="background-color:#e29c1d" role="navigation" id="slide-nav">
+  <div class="container">
+   <div class="navbar-header">
+    <a class="navbar-toggle">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+     </a>
+    <a class="navbar-brand" href="<%=root_path%>"><%= image_tag ("Logo.png")%></a>
+   </div>
+   <div id="slidemenu">
+
+          <!--<form class="navbar-form navbar-right"  role="form">
+            <div class="form-group">
+              <input type="search" placeholder="search" class="form-control">
+            </div>
+            <button type="submit"  class="btn btn-primary">Buscar</button>
+          </form> -->
+
+    <ul class="nav navbar-nav">
+     <% @vk_categoriaProduto = VkCategoriaproduto.all%>
+         <li class="dropdown"><a href="#" id="dLabel" class="dropdown-toggle" data-toggle="dropdown">Produtos <span class="caret"></span></a>
+          <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+           <% @vk_categoriaProduto.each do |categoria| %>
+             <%if categoria.father_id == nil%>
+                 <li class="dropdown-submenu">
+                   <a tabindex="-1" href="#"><%=categoria.nome_categoria%></a>
+                   <ul class="dropdown-menu">
+                     <%@catmenu = VkCategoriaproduto.where(father_id: categoria.id)%>
+                   <%@catmenu.each do | menu|%>
+                      <li><a href="javascript:Pesquisar(<%=menu.id%>);"><%=menu.nome_categoria%></a></li>
+                     <%end%>
+                   </ul>
+                 </li>
+               <%end%>
+             <%end%>
+             </ul>
+         </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li><%= link_to "Sair", destroy_user_session_path, method: :delete%></li>
+      <%end%>
+      <li class="dropdown">
         <% if user_signed_in? %>
-         <li><%= link_to "Sair", destroy_user_session_path, method: :delete%></li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+           <% if current_user.vk_empresa_id == 1 %>
+            <!--Menu para usuário geral-->
+           <%end%>
+            <li><%= link_to 'Cadastrar Produto', vk_produtos_path%></li>
+            <li><%= link_to 'Novo Anuncio', listaProdutos_path%></li>
+            <!--<li role="separator" class="divider"></li>
+            <li class="dropdown-header">Nav header</li>-->
+            </ul>
         <%end%>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <% if user_signed_in? %>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span><b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <% if current_user.vk_empresa_id == 1 %>
-                <!--Menu para usuário geral-->
-            <%else%>
-                <!--Menu para usuário anunciante-->
-            <li class="color-navbar"><%= link_to 'Cadastrar Produto', vk_produtos_path%></li>
-            <li class="color-navbar"><%= link_to 'Novo Anuncio', listaProdutos_path%></li>
-            <%end%>
-          </ul>
-            <%end%>
-        </li>
-      </ul>
-      <a class="navbar-brand navbar-right" id="MostrarEsconderMensagem" style="color:white"  href="#"><span class="glyphicon glyphicon-search"></span></a>
+      </li>
+    </ui>
 
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-</div>
-
-<style media="screen">
-
-.navbar-default .navbar-nav > li > a {
-    color: #e6e6e6;
-}
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: transparent;
-    color: #ffffff;
-}
- </style>
+   </div>
+  </div>
+ </div>

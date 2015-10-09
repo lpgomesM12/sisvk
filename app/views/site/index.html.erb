@@ -1,10 +1,10 @@
 <%= stylesheet_link_tag    "abasSite" %>
 <%= stylesheet_link_tag    "Listasite" %>
-<%= javascript_include_tag "googleAnalytics" %>
+<%= javascript_include_tag "googleAnalytcs" %>
 
 <div class="row">
 <div class="col-lg-12" style="margin-top:-5px">
-<!--    <div class="card hovercard">
+<!--<div class="card hovercard">
         <div class="card-background">
             <img class="card-bkimg" alt="" src="http://cdn1.houseandhold.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/p/u/purple_upper_k.jpg">
         </div>
@@ -14,14 +14,18 @@
         <div class="card-info"> <span class="card-title">Pamela Anderson</span>
 
         </div>
-    </div>-->
+  </div>-->
+
 
   <div id="Mensagem" style="display:none">
-    <div class="row">
+  <div class="row">
     <br>
     <%= form_tag nil, method: 'GET' do %>
 
     <input type="hidden" id="categoria" name="categoria">
+    <input type="hidden" id="lat" name="lat">
+    <input type="hidden" id="long" name="long">
+
 
     <div class="col-lg-2">
         <div class="dropdown">
@@ -45,8 +49,7 @@
             </ul>
         </div>
     </div>
-
-    <div class="col-lg-10">
+    <!--<div class="col-lg-7">
       <div class="row">
         <div class="col-lg-12">
           <div class="input-group">
@@ -54,15 +57,26 @@
             <span class="input-group-btn">
               <button class="btn btn-primary" id="BotaoPesquisa" type="submit" >Buscar</button>
             </span>
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-      </div><!-- /.row -->
-      <br />
+          </div>
+        </div>
       </div>
+      <br />
+    </div>-->
+
+   <button class="btn btn-primary" style="display: none;" id="BotaoPesquisa" type="submit" >Buscar</button>
+
     <% end %>
 
+    <div class="col-lg-10">
+        <div class="input-group">
+          <input id="cep" name="cep" type="text" class="form-control" placeholder="Ou digite seu CEP e encontre as promoções mais próximas de você">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" id="BotaoPesquisaCep" onclick="BuscaEnderecoCep();" >Buscar</button>
+          </span>
+       </div>
+    </div>
   </div>
-
+    <br />
   </div>
 
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -119,7 +133,13 @@
                                       </p>
                                       <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent"><p style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></p></a>
                                       <h3 class="media-heading"<%=vk_anuncio.id%>
-                                        <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent" style="color: #EC7D00; font-weight:bolder"><%= number_to_currency(vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a><a href="<%=loja_path(vk_anuncio.vk_empresa.nome_pagina)%>"><small class="pull-right"><%= vk_anuncio.vk_empresa.nome_empresa%></small></a>
+                                        <a href="/anuncioshow/<%=vk_anuncio.id%>" target="_parent" style="color: #EC7D00; font-weight:bolder"><%= number_to_currency(vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a>
+                                        <a href="<%=loja_path(vk_anuncio.vk_empresa.nome_pagina)%>">
+                                          <% if vk_anuncio.vk_empresa.logo? %>
+                                            <div class='pull-right'> <%= image_tag vk_anuncio.vk_empresa.logo.url(:thumb) %></div></a>
+                                            <%else%>
+                                             <small class="pull-right"><%= vk_anuncio.vk_empresa.nome_empresa%></small></a>
+                                          <%end%>
                                       </h3>
                                       <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                         <!--  <li>4,820 SqFt</li>
@@ -192,7 +212,7 @@
                                       </p>
                                       <a href="/anuncioshow/<%=favorito.vk_anuncio.id%>" target="_parent"><p style="color:#767676; text-decoration: line-through">De: <%= number_to_currency(favorito.vk_anuncio.valr_produto, unit: "R$ ", separator: ",", delimiter: "")  %></p></a>
                                       <h3 class="media-heading">
-                                        <a href="/anuncioshow/<%=favorito.vk_anuncio.id%>" target="_parent" style="color: #EC7D00; font-weight:bolder"><%= number_to_currency(favorito.vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a><a href="<%=loja_path(favorito.vk_anuncio.vk_empresa.nome_pagina)%>"><small class="pull-right"><%= favorito.vk_anuncio.vk_empresa.nome_empresa%></small></a>
+                                        <a href="/anuncioshow/<%=favorito.vk_anuncio.id%>" target="_parent" style="color: #EC7D00; font-weight:bolder"><%= number_to_currency(favorito.vk_anuncio.valr_comdesconto, unit: "R$ ", separator: ",", delimiter: "") rescue nil %></a><a href="<%=loja_path(favorito.vk_anuncio.vk_empresa.nome_pagina)%>"><div class="pull-right"> <%= image_tag favorito.vk_anuncio.vk_empresa.logo.url(:thumb) %></div></a>
                                       </h3>
                                       <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                         <!--  <li>4,820 SqFt</li>
@@ -250,7 +270,7 @@ function MostrarEsconderMensagem(){
         $("#Mensagem").toggle();
   }
 
-  function Pesquisar(id){
+function Pesquisar(id){
      $("#categoria").val(id);
      $("#BotaoPesquisa").click();
   }
@@ -272,6 +292,24 @@ function busca_endereco(id){
         }
       })
   }
+
+function BuscaEnderecoCep(){
+    $.ajax({
+        url: 'http://maps.google.com/maps/api/geocode/json',
+        data :
+        {
+           address: $('#cep').val()
+        },
+      success: function(data){
+        for (var i in data.results) {
+          var item = data.results[i];
+          $("#lat").val(item.geometry.location.lat);
+          $("#long").val(item.geometry.location.lng);
+          $("#BotaoPesquisa").click();
+        };
+        }
+      })
+}
 
 function Favoritar(id_anuncio){
    $.ajax({

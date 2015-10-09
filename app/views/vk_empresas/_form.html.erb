@@ -64,7 +64,12 @@
             <%= f.text_field :nome_pagina, :class => 'form-control', :placeholder=>"Digite o nome para a pagina de sua empresa sem espaços" %>
           </div>
         </div>
+      <div class="row mar-bot40">
+        <div class="col-lg-4" >
+             <%= f.file_field :logo%>
+        </div>
        </div>
+      </div>
       <div class="tab-pane" id="tab_default_2">
         <br>
           <button class="btn btn-success" type="button" onclick="$('#myModal1').modal('show');">Novo Endereco
@@ -186,7 +191,18 @@
          </div>
            <%end%>
           </div>
+          <div class="row mar-bot40">
+            <div class="col-lg-6">
+              <%= endereco.label :Latitude %><br>
+              <%= endereco.text_field :latitude, :class => 'form-control' %>
+            </div>
+            <div class="col-lg-6">
+              <%= endereco.label :Longitude %><br>
+              <%= endereco.text_field :longitude, :class => 'form-control' %>
+            </div>
+          </div>
          <%end%>
+
 
      </div>
      <div class="modal-footer">
@@ -260,7 +276,9 @@ function salvaEndereco(){
           complemento: $('#vk_endereco_desc_complemento').val(),
           cep: $('#vk_endereco_desc_cep').val(),
           cidade: $('#vk_endereco_vk_cidade_id').val(),
-          empresa: '<%=@vk_empresa.id%>'
+          empresa: '<%=@vk_empresa.id%>',
+          latitude: $('#vk_endereco_latitude').val(),
+          longitude: $('#vk_endereco_longitude').val()
         },
         success: function(data){
           $('#tlbendereco').empty();

@@ -1,6 +1,20 @@
 
 <% @vk_anuncios.each do |vk_anuncio| %>
-<h3 align="center" style="color:#3a5795"><b><%=vk_anuncio.vk_empresa.nome_empresa%></b></h3>
+<div class="row">
+  <% if vk_anuncio.vk_empresa.logo? %>
+  <div class="col-lg-4">
+  </div>
+  <div class="col-lg-6">
+      <%= image_tag vk_anuncio.vk_empresa.logo.url(:medium) %>
+  </div>
+    <%else%>
+  <div class="col-lg-5">
+  </div>
+  <div class="col-lg-6">
+      <h1 style="color:#3a5795"><strong><%= vk_anuncio.vk_empresa.nome_empresa%></strong></h1>
+  </div>
+    <%end%>
+  </div>
 <%break%>
 <%end%>
 <hr>

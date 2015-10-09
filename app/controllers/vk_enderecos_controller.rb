@@ -42,6 +42,6 @@ class VkEnderecosController < ApplicationController
     end
 
     def vk_endereco_params
-      params.require(:vk_endereco).permit(:nome_bairro, :nome_rua, :desc_quadra, :desc_lote, :desc_complemento, :desc_cep, :vk_cidade_id)
+      params.require(:vk_endereco).permit(:nome_bairro, :nome_rua, :desc_quadra, :desc_lote, :desc_complemento, :desc_cep, :vk_cidade_id, :latitude, :longitude)
     end
 end
