@@ -1,11 +1,15 @@
 <%= stylesheet_link_tag   "style" %>
-<%= javascript_include_tag "googleAnalytcs" %>
+<%#= javascript_include_tag "googleAnalytcs" %>
 
 
-<%@cate = "no"%>
-<%@lat = "no"%>
-<%@long = "no"%>
-<%=hidden_field(:categoria, :categoria)%>
+<%= form_tag(olhekpesquisa_path, :method=>'GET') do %>
+    <input type="hidden" id="vk_vitrine_id" name="vk_vitrine_id" value="1" >
+		<input type="hidden" id="lat" name="lat">
+		<input type="hidden" id="long" name="long">
+		<input type="hidden" id="categoria" name="categoria">
+		<input type="hidden" id="q" name="q" >
+   <button class="btn btn-primary" style="display: none;" id="BotaoPesquisa" type="submit" >Buscar</button>
+<%end%>
 
 	<div class="row mar-bot40">
 		 <div class="col-lg-12">
@@ -24,9 +28,7 @@
 					<input id="cep" name="cep" type="text" class="form-control" placeholder="Digite aqui seu CEP...">
 					<span class="input-group-btn">
 						<button class="btn btn-primary" id="BotaoPesquisaCep" onclick="BuscaEnderecoCep();" >Buscar</button>
-
-           <%= button_to "New User", buscaPorVitrine_path(1,@lat,@long, @cate), :class => "button", :style=> "display: none", id: "botao", :method => :get  %>
-					</span>
+    				</span>
 			 </div>
 		</div>
 	</div>
@@ -47,10 +49,9 @@
 <div class="col-lg-5">
 </div>
 <div class="col-lg-4">
-	<%= link_to buscaPorVitrine_path(1,@lat,@long, @cate) do %>
-		<span style="font-size:100px" class=" glyphicon glyphicon-shopping-cart"></span>
-	<% end %>
-
+		<a href="#" onclick="Pesquisar()">
+			<span style="font-size:100px" class=" glyphicon glyphicon-shopping-cart"></span>
+		</a>
  </div>
 </div>
 <hr>
@@ -86,13 +87,36 @@
   })
 }
 
+$(document).ready(function() {
+  $("#cep").keypress(function(e){
+		if(e.wich == 13 || e.keyCode == 13){
+			BuscaEnderecoCep();
+		}
+	});
+});
+
 function Pesquisar(id){
-   $("#categoria_categoria").val(id);
-	 alert($("#categoria_categoria").val());
-	 //$("#botao").click();
-	 $(location).attr('href','buscaPorVitrine/1/no/no/no');
+	 $("#categoria").val(id);
+	 $("#BotaoPesquisa").click();
  }
 
+ function BuscaEnderecoCep(){
+     $.ajax({
+         url: 'http://maps.google.com/maps/api/geocode/json',
+         data :
+         {
+            address: $('#cep').val()
+         },
+       success: function(data){
+         for (var i in data.results) {
+           var item = data.results[i];
+           $("#lat").val(item.geometry.location.lat);
+           $("#long").val(item.geometry.location.lng);
+           $("#BotaoPesquisa").click();
+         };
+         }
+       })
+ }
 
 buscaVitrines()
 

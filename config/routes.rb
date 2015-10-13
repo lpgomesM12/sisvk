@@ -23,12 +23,11 @@ Rails.application.routes.draw do
   match '/listarCidade', to: 'vk_cidades#get_cities', via: 'get'
   match '/buscaVitrines', to: 'vk_vitrines#buscaVitrines', via: 'get'
 
-  get '/buscaPorVitrine/:vk_vitrine_id/:lat/:long/:categoria', to: 'site#index', as: 'buscaPorVitrine'
+  #get '/buscaPorVitrine/:vk_vitrine_id/:lat/:long/:categoria', to: 'site#index', as: 'buscaPorVitrine'
   get '/anuncioshow/:id', to: 'site#show_anuncio', as: 'anuncioshow'
-
+  get '/olhekpesquisa', to: 'site#index', as: 'olhekpesquisa'
 
   match '/buscaProdutos', to: 'vk_produtos#busca_produtos', via: 'get'
-  match '/olhekpesquisa', to: 'site#index', via: 'get'
 
   match '/olheksalvarFavorito', to: 'vk_anunciofavoritos#salvar', via: 'get'
 

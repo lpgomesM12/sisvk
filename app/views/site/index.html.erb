@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag    "abasSite" %>
 <%= stylesheet_link_tag    "Listasite" %>
-<%= javascript_include_tag "googleAnalytcs" %>
+<%#= javascript_include_tag "googleAnalytcs" %>
 
 <div class="row">
 <div class="col-lg-12" style="margin-top:-5px">
@@ -16,17 +16,20 @@
         </div>
   </div>-->
 
+  <%= form_tag(olhekpesquisa_path, :method=>'GET') do %>
+
+    	<input type="hidden" id="vk_vitrine_id" name="vk_vitrine_id" value="1" >
+  		<input type="hidden" id="lat" name="lat">
+  		<input type="hidden" id="long" name="long">
+  		<input type="hidden" id="categoria" name="categoria">
+  		<input type="hidden" id="q" name="q" >
+     <button class="btn btn-primary" style="display: none;" id="BotaoPesquisa" type="submit" >Buscar</button>
+
+  <%end%>
 
   <div id="Mensagem" style="display:none">
   <div class="row">
     <br>
-    <%= form_tag nil, method: 'GET' do %>
-
-    <input type="hidden" id="categoria" name="categoria">
-    <input type="hidden" id="lat" name="lat">
-    <input type="hidden" id="long" name="long">
-
-
     <div class="col-lg-2">
         <div class="dropdown">
             <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
@@ -63,9 +66,6 @@
       <br />
     </div>-->
 
-   <button class="btn btn-primary" style="display: none;" id="BotaoPesquisa" type="submit" >Buscar</button>
-
-    <% end %>
 
     <div class="col-lg-10">
         <div class="input-group">
@@ -270,10 +270,10 @@ function MostrarEsconderMensagem(){
         $("#Mensagem").toggle();
   }
 
-function Pesquisar(id){
+  function Pesquisar(id){
      $("#categoria").val(id);
-     $("#BotaoPesquisa").click();
-  }
+  	 $("#BotaoPesquisa").click();
+   }
 
 function busca_endereco(id){
       $.ajax({
@@ -346,6 +346,5 @@ function Favoritar(id_anuncio){
     $("#MostrarEsconderMensagem").click(MostrarEsconderMensagem);
 
   });
-
 
 </script>

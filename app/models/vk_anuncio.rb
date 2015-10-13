@@ -71,7 +71,7 @@ class VkAnuncio < ActiveRecord::Base
     sql = sql + " AND distancia_km(#{lat}, #{long}, CAST(en.latitude as NUMERIC), CAST(en.longitude AS NUMERIC)) <= 10 "
     sql = sql + " AND distancia_km(#{lat}, #{long}, CAST(en.latitude as NUMERIC), CAST(en.longitude AS NUMERIC)) > 0"
     self.joins(sql)
-    
+
   end
 
   def self.busca_por_empresa(query)

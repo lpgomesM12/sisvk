@@ -3,28 +3,21 @@ class SiteController < ApplicationController
 include ActionView::Helpers::NumberHelper
  # respond_to :html
  def index
-   if params[:lat] != "" && params[:lat] != "no" && params[:long] != "" && params[:long] != "no"
+   if params[:lat] != "" && params[:long] != ""
    @vk_anuncios = VkAnuncio.busca_lat_long(params[:lat],params[:long]).paginate(:page => params[:page], :per_page => 50)
-   elsif params[:q] && !params[:vk_vitrine_id]
-   @vk_anuncios = VkAnuncio.find_by_nome_anuncio_or_all(params[:q])
- elsif params[:vk_vitrine_id] && params[:categoria] && params[:categoria] != "no"
+ elsif params[:vk_vitrine_id] && params[:categoria] && params[:categoria] != ""
     @vk_anuncios = VkAnuncio.busca_categoria_vitrine(params[:categoria],params[:vk_vitrine_id]).paginate(:page => params[:page], :per_page => 50)
-   elsif params[:vk_vitrine_id] && !params[:q]
-    @vk_anuncios = busca_por_vitrine(params[:vk_vitrine_id])
-   elsif params[:vk_vitrine_id] && params[:q]
-    @vk_anuncios = VkAnuncio.busca_nome_vitrine(params[:q],params[:vk_vitrine_id]).paginate(:page => params[:page], :per_page => 50)
-   end
-
-   if params[:vk_vitrine_id]
-     @vitrine  = params[:vk_vitrine_id]
+  elsif params[:vk_vitrine_id] && params[:vk_vitrine_id] != ""
+    @vk_anuncios = busca_por_vitrine(params[:vk_vitrine_id]).paginate(:page => params[:page], :per_page => 50)
+   # elsif params[:vk_vitrine_id] && params[:q]
+   # @vk_anuncios = VkAnuncio.busca_nome_vitrine(params[:q],params[:vk_vitrine_id]).paginate(:page => params[:page], :per_page => 50)
    end
 
   @vk_categoriaProduto = VkCategoriaproduto.all
 
   if user_signed_in?
       @vk_anuncioFavorito = VkAnunciofavorito.where(user_id: current_user.id)
-
-     @vk_anuncioFavorito.each do |favorito|
+      @vk_anuncioFavorito.each do |favorito|
        @vk_anuncios.each do |anuncio|
          if favorito.vk_anuncio_id == anuncio.id
             anuncio.favorito = true
