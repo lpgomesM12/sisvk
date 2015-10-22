@@ -27,7 +27,7 @@
         <td><%= vk_produto.nome_produto %></td>
         <td align='right'>
             <div class="btn-group">
-              <%= link_to vk_produto, :class => "btn btn-default btn-sm" do %>
+              <%= link_to show_produto_vk_anuncio_path(vk_produto), :class => "btn btn-default btn-sm" do %>
                 <span class="glyphicon glyphicon-list-alt"></span> Visualizar
               <% end %>
               <%= link_to anunciar_path(vk_produto), :class => "btn btn-default btn-sm" do %> Anunciar

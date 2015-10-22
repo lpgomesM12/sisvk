@@ -153,6 +153,8 @@
                                       <button type="button"  onclick="busca_endereco(<%=vk_anuncio.id%>);" class="btn btn-default btn-xs">
                                         <span class="glyphicon glyphicon-map-marker"></span> Endereço Lojas
                                       </button>
+
+                                      <a class="pull-right" href="javascript:recomendar(<%=vk_anuncio.id%>);"><span style="font-size:20px" class="glyphicon glyphicon-thumbs-up" data-toggle="tooltip" data-placement="top" title="Recomendar Produto"></span>      <span><label id="reco<%=vk_anuncio.id%>"><%= vk_anuncio.numr_recomendado == nil ? 0 : vk_anuncio.numr_recomendado%></label></span> </a>
                                   </div>
                               </div>
                           </div><!-- End Listing-->
@@ -292,6 +294,21 @@ function busca_endereco(id){
         }
       })
   }
+
+  function recomendar(id){
+        $.ajax({
+          url: '<%= recomendar_path %>',
+          data : {
+            vk_anuncio_id : id
+          },
+          success: function(data){
+            for (var i in data) {
+              var item = data[i];
+               $('#reco'+item.id).text(item.numr_recomendado);
+             };
+          }
+        })
+    }
 
 function BuscaEnderecoCep(){
     $.ajax({

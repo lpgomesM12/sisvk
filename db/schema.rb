@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003193745) do
+ActiveRecord::Schema.define(version: 20151015203750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20151003193745) do
     t.integer  "integer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "numr_recomendado"
   end
 
   add_index "vk_anuncios", ["vk_empresa_id"], name: "index_vk_anuncios_on_vk_empresa_id", using: :btree

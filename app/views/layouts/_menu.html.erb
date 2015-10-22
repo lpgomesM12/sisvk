@@ -50,7 +50,9 @@
            <% if current_user.vk_empresa_id == 1 %>
             <!--Menu para usuário geral-->
            <%end%>
-            <li><%= link_to 'Cadastrar Produto', vk_produtos_path%></li>
+           <% if current_user.id == 1 %>
+              <li><%= link_to 'Cadastrar Produto', vk_produtos_path%></li>
+            <%end%>
             <li><%= link_to 'Novo Anuncio', listaProdutos_path%></li>
             <!--<li role="separator" class="divider"></li>
             <li class="dropdown-header">Nav header</li>-->

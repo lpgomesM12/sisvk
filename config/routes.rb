@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :vk_anuncios do
     member do
       get  :endereco
+      get  :show_produto
     end
   end
   resources :vk_empresavitrines
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
   match '/buscaProdutos', to: 'vk_produtos#busca_produtos', via: 'get'
 
   match '/olheksalvarFavorito', to: 'vk_anunciofavoritos#salvar', via: 'get'
+  match '/recomendar', to: 'vk_anuncios#recomendar', via: 'get'
 
   match '/olheksalvaEndereco', to: 'vk_empresas#salva_endereco', via: 'get'
   match '/olhekexcluiEndereco', to: 'vk_empresas#exclui_endereco', via: 'get'

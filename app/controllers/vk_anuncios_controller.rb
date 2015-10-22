@@ -5,6 +5,25 @@ class VkAnunciosController < ApplicationController
 
   respond_to :html
 
+
+def recomendar
+  @vk_anuncio = VkAnuncio.find(params[:vk_anuncio_id])
+  if @vk_anuncio.numr_recomendado == nil
+     @vk_anuncio.numr_recomendado = 0
+  end
+  @vk_anuncio.numr_recomendado = @vk_anuncio.numr_recomendado + 1
+  @vk_anuncio.save
+
+  anuncio = VkAnuncio.where(id: params[:vk_anuncio_id])
+  anuncio_json = anuncio.map{|item|{:id => item.id,
+                                    :numr_recomendado => item.numr_recomendado}}
+  render :json => anuncio_json
+
+end
+
+def show_produto
+  @vk_produto = VkProduto.find(params[:id])
+end
 def busca_endereco_anuncio
   retorna_endereco_anuncio(params[:vk_anuncio_id])
 end
@@ -68,7 +87,8 @@ end
  end
 
   def index
-    @vk_anuncios = VkAnuncio.all
+   #@vk_anuncios = VkAnuncio.all
+    @vk_anuncios = VkAnuncio.where(vk_empresa_id: current_user.id)
     respond_with(@vk_anuncios)
   end
 
@@ -119,6 +139,6 @@ end
     end
 
     def vk_anuncio_params
-      params.require(:vk_anuncio).permit(:desc_titulo, :desc_anuncio, :valr_produto, :valr_comdesconto, :data_inicio, :data_fim, :numr_qtddisponivel, :flag_ilimitado, :numr_visualizacao, :numr_click, :vk_produto_id, :vk_empresa_id, :user_id)
+      params.require(:vk_anuncio).permit(:desc_titulo, :desc_anuncio, :valr_produto, :valr_comdesconto, :data_inicio, :data_fim, :numr_qtddisponivel, :flag_ilimitado, :numr_visualizacao, :numr_click, :vk_produto_id, :vk_empresa_id, :user_inclusao, :numr_recomendado )
     end
 end
